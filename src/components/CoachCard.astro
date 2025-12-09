@@ -1,0 +1,66 @@
+---
+import type { TrainerInfo } from "../data/herren";
+const { trainer } = Astro.props as { trainer: TrainerInfo };
+---
+
+<article class="coach-card">
+	<div class="coach-card__image">
+		<img src={trainer.image} alt={trainer.name} loading="lazy" />
+	</div>
+	<div class="coach-card__body">
+		<p class="coach-card__role">{trainer.role}</p>
+		<h3>{trainer.name}</h3>
+		{trainer.mail && (
+			<a class="coach-card__contact" href={`mailto:${trainer.mail}`}>{trainer.mail}</a>
+		)}
+		{trainer.phone && <span class="coach-card__contact">{trainer.phone}</span>}
+	</div>
+</article>
+
+<style>
+.coach-card {
+	display: flex;
+	gap: 0.9rem;
+	align-items: center;
+	padding: 0.9rem 1rem;
+	border-radius: 18px;
+	background: #fff;
+	box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+	min-width: 260px;
+}
+
+.coach-card__image {
+	width: 72px;
+	height: 72px;
+	border-radius: 16px;
+	overflow: hidden;
+	background: rgba(15, 23, 42, 0.06);
+}
+
+.coach-card__image img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+.coach-card__role {
+	text-transform: uppercase;
+	font-size: 0.7rem;
+	letter-spacing: 0.12em;
+	margin: 0;
+	color: rgba(15, 23, 42, 0.6);
+}
+
+.coach-card__body h3 {
+	margin: 0.2rem 0;
+	font-size: 1rem;
+}
+
+.coach-card__contact {
+	display: block;
+	font-size: 0.85rem;
+	color: rgba(15, 23, 42, 0.8);
+	text-decoration: none;
+}
+</style>

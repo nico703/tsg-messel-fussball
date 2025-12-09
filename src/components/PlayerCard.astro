@@ -1,0 +1,58 @@
+---
+import type { Spieler } from "../data/herren";
+const { spieler } = Astro.props as { spieler: Spieler };
+---
+
+<div class="player-card">
+  <div class="player-card__inner">
+    <div class="player-card__top">
+      <span class="player-card__position">{spieler.position}</span>
+    </div>
+    <div class="player-card__name">
+      {spieler.name}
+    </div>
+  </div>
+</div>
+
+<style>
+.player-card {
+  width: 140px;
+  border-radius: 16px;
+  padding: 8px;
+  background: linear-gradient(135deg, rgba(59,130,246,0.18), rgba(255,255,255,0.95));
+  box-shadow: 0 8px 18px rgba(30,64,175,0.2);
+  display: inline-flex;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.player-card__inner {
+  border-radius: 12px;
+  padding: 10px;
+  background: rgba(255,255,255,0.85);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.player-card__top {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.player-card__position {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(37,99,235,0.3);
+}
+
+.player-card__name {
+  font-weight: 700;
+  font-size: 0.9rem;
+  line-height: 1.2;
+}
+</style>

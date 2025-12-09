@@ -1,0 +1,123 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { newsEntries } from "../../data/news";
+
+const entries = [...newsEntries].sort(
+	(a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+);
+
+const formatDate = (value: string) =>
+	new Date(value).toLocaleDateString("de-DE", {
+		day: "2-digit",
+		month: "long",
+		year: "numeric",
+	});
+---
+
+<BaseLayout title="News & Berichte – TSG Messel Fußball">
+	<div class="page news-page">
+		<header class="news-header">
+			<h1>News & Spielberichte</h1>
+			<p>
+				Aktuelle Ergebnisse, Berichte und Veranstaltungen aus der Fußballabteilung. Hier bleibst
+				du auf dem Laufenden, was bei der TSG Messel passiert.
+			</p>
+		</header>
+
+		<section class="news-grid">
+			{entries.map((entry) => (
+				<article class="news-card">
+					<header>
+						<span class="news-card__tag">{entry.category}</span>
+						<time dateTime={entry.date}>{formatDate(entry.date)}</time>
+						<h2>{entry.title}</h2>
+						<p>{entry.teaser}</p>
+					</header>
+					<footer>
+						{entry.link && (
+							<a class="btn" href={entry.link}>
+								Details lesen
+							</a>
+						)}
+						{entry.icsUrl && (
+							<a class="btn btn--ghost" href={entry.icsUrl}>
+								In Kalender speichern
+							</a>
+						)}
+					</footer>
+				</article>
+			))}
+		</section>
+	</div>
+</BaseLayout>
+
+<style>
+.page {
+	max-width: 1080px;
+	margin: 0 auto;
+	padding: 2.5rem 1.5rem 3rem;
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
+
+.news-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+	gap: 1.25rem;
+}
+
+.news-card {
+	padding: 1.5rem;
+	border-radius: 20px;
+	background: #fff;
+	border: 1px solid rgba(15, 23, 42, 0.08);
+	box-shadow: 0 18px 30px rgba(15, 23, 42, 0.05);
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.news-card header {
+	display: flex;
+	flex-direction: column;
+	gap: 0.4rem;
+}
+
+.news-card__tag {
+	font-size: 0.75rem;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	background: rgba(15, 23, 42, 0.05);
+	padding: 0.2rem 0.8rem;
+	border-radius: 999px;
+	width: fit-content;
+}
+
+.news-card time {
+	font-size: 0.9rem;
+	color: rgba(15, 23, 42, 0.7);
+}
+
+.news-card footer {
+	display: flex;
+	gap: 0.6rem;
+	flex-wrap: wrap;
+}
+
+.btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.5rem 1.2rem;
+	border-radius: 999px;
+	text-decoration: none;
+	border: 1px solid rgba(15, 23, 42, 0.12);
+	font-weight: 600;
+	color: inherit;
+}
+
+.btn--ghost {
+	background: transparent;
+}
+</style>

@@ -1,0 +1,271 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { responsibleMembers } from "../../data/responsible";
+
+const highlights = [
+	{ title: "Aktiver Bereich", detail: "1. Mannschaft (A-Klasse) und 2. Mannschaft (C-Liga)" },
+	{ title: "Nachwuchsarbeit", detail: "Mehr als ein Dutzend Teams von G- bis A-Jugend" },
+	{ title: "Infrastruktur", detail: "2 Naturrasenplätze, Trainingsfläche & moderne Drei-Felder-Halle" },
+];
+---
+
+<BaseLayout title="Über uns – TSG Messel Fußball">
+	<div class="about">
+		<section class="about-hero">
+			<div class="about-hero__overlay">
+				<p class="eyebrow">TSG 1877 Messel Fußball</p>
+				<h1>Tradition, Ehrenamt und moderner Fußballgeist</h1>
+				<p>
+					Seit 1877 steht die TSG Messel für Fußball mit Herz. Wir verbinden Dorfkultur, Nachwuchsförderung
+					und ambitionierten Spielbetrieb – getragen von einem starken ehrenamtlichen Team.
+				</p>
+			</div>
+		</section>
+
+		<section class="about-content">
+			<div class="about-text">
+				<h2>Wer wir sind</h2>
+				<p>
+					In Messel leben knapp 4.000 Menschen – und doch bringen wir Woche für Woche den Platz zum
+					Beben. Unsere Fußballabteilung stützt das kulturelle Leben des Ortes, schafft Begegnungen
+					und bietet einen sportlichen Rahmen für alle Generationen. Ehrenamtliche Trainerinnen,
+					Begleiter und Organisatoren halten den Spiel- und Trainingsbetrieb mit viel Herzblut am
+					Laufen.
+				</p>
+				<p>
+					Mit Artikeln, Spielberichten und Fotos lassen wir unsere Community an diesem Vereinsleben
+					teilhaben. Ob neugieriger Gast oder eingefleischter Fan – hier bekommst du einen schnellen
+					Eindruck, wie lebendig Fußball in Messel ist.
+				</p>
+			</div>
+			<div class="about-text">
+				<h2>Sportliche Entwicklung</h2>
+				<p>
+					Unsere 1. Mannschaft ist aktuell in der A-Klasse Darmstadt unterwegs, die 2. Mannschaft hat
+					nach dem jüngsten Aufstieg einen festen Platz in der C-Liga. Dazu kommt eine aktive AH, die
+					den sportlichen Betrieb ebenso prägt wie das Vereinsleben.
+				</p>
+				<p>
+					Wir investieren gezielt in Infrastruktur: zwei Naturrasenplätze, eine separate Trainingswiese
+					und eine top ausgestattete Drei-Felder-Halle direkt neben dem Sportgelände. Dadurch können
+					wir ganzjährig hochwertige Trainingseinheiten anbieten – von den Bambini bis zur AH.
+				</p>
+			</div>
+		</section>
+
+		<section class="about-feature">
+			<div class="about-text">
+				<h2>Jugendarbeit & Werte</h2>
+				<p>
+					Unsere Nachwuchsarbeit wurde in den letzten Jahren komplett neu aufgebaut. Heute stellen wir
+					wieder zahlreiche Jugendteams, die von zertifizierten Trainerinnen und Trainern betreut
+					werden – vom DFB-Kinder- und Jugendzertifikat bis zur B-Lizenz.
+				</p>
+				<p>
+					Auf und neben dem Platz vermitteln wir Werte wie Fair Play, Empathie, Teamfähigkeit,
+					Pflichtbewusstsein und Zusammenhalt. So entwickeln wir nicht nur Spielerinnen und Spieler,
+					sondern echte Teamplayer für das Leben.
+				</p>
+			</div>
+		</section>
+
+		<section class="about-map">
+			<h2>Unser Zuhause</h2>
+			<p>Sportanlage TSG Messel · Am Sport 11, 64409 Messel</p>
+			<div class="about-map__embed">
+				<iframe
+					src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2536.4786943961684!2d8.736276277063663!3d49.93291737148582!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bd8d5cf6e3436d%3A0xc62e8ba74aeaed1f!2sAm%20Sport%2011%2C%2064409%20Messel!5e0!3m2!1sde!2sde!4v1733097400000!5m2!1sde!2sde"
+					loading="lazy"
+					referrerpolicy="no-referrer-when-downgrade"
+				></iframe>
+			</div>
+		</section>
+
+		<section class="about-responsible">
+			<h2>Ansprechpartner</h2>
+			<p>Vorstand, Abteilungsleitung Fußball und Jugendleitung auf einen Blick.</p>
+			<div class="responsible-grid">
+				{responsibleMembers.map((member) => (
+					<article class="responsible-card">
+						<div class="responsible-card__image">
+							<img src={member.image} alt={member.name} loading="lazy" />
+						</div>
+						<div class="responsible-card__body">
+							<p class="responsible-card__role">{member.role}</p>
+							<h3>{member.name}</h3>
+							{member.mail && (
+								<a href={`mailto:${member.mail}`} class="responsible-card__contact">
+									{member.mail}
+								</a>
+							)}
+							{member.phone && (
+								<a href={`tel:${member.phone}`} class="responsible-card__contact">
+									{member.phone}
+								</a>
+							)}
+						</div>
+					</article>
+				))}
+			</div>
+		</section>
+	</div>
+</BaseLayout>
+
+<style>
+.about {
+	display: flex;
+	flex-direction: column;
+	gap: 2.5rem;
+}
+
+.about-hero {
+	position: relative;
+	min-height: 45vh;
+	background-image: url("/images/hero-ueber-uns.jpg");
+	background-size: cover;
+	background-position: center;
+}
+
+.about-hero__overlay {
+	position: relative;
+	z-index: 1;
+	padding: 4rem 1.5rem;
+	max-width: 860px;
+	color: #fff;
+}
+
+.about-hero::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(135deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.2));
+}
+
+.eyebrow {
+	text-transform: uppercase;
+	letter-spacing: 0.18em;
+	font-size: 0.8rem;
+	color: rgba(255, 255, 255, 0.7);
+	margin-bottom: 0.75rem;
+}
+
+.about-content,
+.about-feature {
+	max-width: 1080px;
+	margin: 0 auto;
+	padding: 0 1.5rem;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+	gap: 1.8rem;
+}
+
+.about-text {
+	background: rgba(255, 255, 255, 0.9);
+	border-radius: 24px;
+	padding: 1.5rem;
+	box-shadow: 0 20px 34px rgba(15, 23, 42, 0.08);
+}
+
+.about-text h2 {
+	margin-top: 0;
+}
+
+.about-feature .about-text {
+	min-height: 100%;
+}
+
+.highlight-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	gap: 1rem;
+}
+
+.highlight-card {
+	border-radius: 20px;
+	padding: 1.2rem;
+	background: rgba(15, 23, 42, 0.9);
+	color: #fff;
+	box-shadow: 0 12px 28px rgba(15, 23, 42, 0.4);
+}
+
+.highlight-card h3 {
+	margin-top: 0;
+}
+
+.about-map,
+.about-responsible {
+	max-width: 1080px;
+	margin: 0 auto;
+	padding: 0 1.5rem 2rem;
+}
+
+.about-map__embed {
+	margin-top: 1rem;
+	border-radius: 24px;
+	overflow: hidden;
+	box-shadow: 0 22px 40px rgba(15, 23, 42, 0.15);
+}
+
+.about-map iframe {
+	width: 100%;
+	min-height: 360px;
+	border: 0;
+}
+
+.responsible-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+	gap: 1.4rem;
+	margin-top: 1.4rem;
+}
+
+.responsible-card {
+	display: flex;
+	gap: 1rem;
+	padding: 1.1rem;
+	border-radius: 20px;
+	background: rgba(255, 255, 255, 0.95);
+	box-shadow: 0 18px 34px rgba(15, 23, 42, 0.08);
+}
+
+.responsible-card__image {
+	width: 84px;
+	height: 84px;
+	border-radius: 18px;
+	overflow: hidden;
+	background: rgba(15, 23, 42, 0.05);
+	flex-shrink: 0;
+}
+
+.responsible-card__image img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+.responsible-card__role {
+	text-transform: uppercase;
+	letter-spacing: 0.12em;
+	font-size: 0.7rem;
+	margin: 0;
+	color: rgba(15, 23, 42, 0.6);
+}
+
+.responsible-card__body h3 {
+	margin: 0.25rem 0;
+}
+
+.responsible-card__contact {
+	display: block;
+	color: rgba(15, 23, 42, 0.85);
+	text-decoration: none;
+	font-size: 0.9rem;
+}
+
+@media (max-width: 720px) {
+	.about-hero {
+		min-height: 60vh;
+	}
+}
+</style>

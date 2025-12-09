@@ -1,0 +1,120 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { herrenTeams } from "../../data/herren";
+import PlayerCard from "../../components/PlayerCard.astro";
+import CoachCard from "../../components/CoachCard.astro";
+---
+
+<BaseLayout title="Herren – TSG Messel Fußball">
+  <div class="page">
+    <h1>Herrenmannschaften</h1>
+    <p>
+      Unsere 1. und 2. Mannschaft repräsentieren die TSG Messel im aktiven Spielbetrieb.
+      Hier findest du Kader, Trainerteam und Links zu Ergebnissen und Tabellen.
+    </p>
+
+    {herrenTeams.map((team) => (
+      <section class="team-section">
+        <header class="team-section__header">
+          <h2>{team.name}</h2>
+          {team.kontakt && (
+            <div class="team-section__meta">
+              <span>
+                <strong>Kontakt:</strong>{" "}
+                <a href={`mailto:${team.kontakt}`}>{team.kontakt}</a>
+              </span>
+            </div>
+          )}
+        </header>
+
+        {team.trainerTeam && (
+          <div class="team-section__coaches">
+            {team.trainerTeam.map((coach) => (
+              <CoachCard trainer={coach} />
+            ))}
+          </div>
+        )}
+
+        <div class="team-section__content">
+          <div class="team-section__players">
+            {team.spieler.map((s) => (
+              <PlayerCard spieler={s} />
+            ))}
+          </div>
+
+          <aside class="team-section__sidebar">
+            {team.fussballDeUrl && (
+              <>
+                <h3>Ergebnisse &amp; Tabelle</h3>
+                <p>
+                  Alle aktuellen Spiele und Tabellen findest du auf fussball.de:
+                </p>
+                <a href={team.fussballDeUrl} target="_blank" rel="noopener noreferrer">
+                  Zu fussball.de
+                </a>
+              </>
+            )}
+          </aside>
+        </div>
+      </section>
+    ))}
+  </div>
+</BaseLayout>
+
+<style>
+.page {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+}
+
+.team-section {
+  margin-top: 2.2rem;
+  border-top: 1px solid rgba(37,99,235,0.15);
+  padding-top: 1.5rem;
+}
+
+.team-section__header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.team-section__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  font-size: 0.9rem;
+}
+
+.team-section__content {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: minmax(0, 2.5fr) minmax(0, 1fr);
+  gap: 1.4rem;
+}
+
+.team-section__coaches {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.team-section__players {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.team-section__sidebar {
+  font-size: 0.9rem;
+  align-self: flex-start;
+}
+
+@media (max-width: 800px) {
+  .team-section__content {
+    grid-template-columns: 1fr;
+  }
+}
+</style>

@@ -1,0 +1,106 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { jugendTeams } from "../../data/jugend";
+import YouthTeamCard from "../../components/YouthTeamCard.astro";
+import GalleryGrid from "../../components/GalleryGrid.astro";
+import { jugendGallery } from "../../data/jugendGallery";
+
+// später könntest du hier z.B. je nach Saison ein anderes Logo einbinden:
+const jugendLogo = "/images/jugend-logo-default.png";
+---
+
+<BaseLayout title="Jugend – TSG Messel Fußball">
+  <div class="page">
+    <header class="jugend-header">
+      <img src={jugendLogo} alt="TSG Messel Jugend" class="jugend-header__logo" />
+      <div>
+        <h1>Jugendfußball bei der TSG Messel</h1>
+        <p>
+          Von den Kleinsten bis zur A-Jugend – unsere Jugendabteilung bietet Kindern
+          und Jugendlichen einen modernen und gut betreuten Einstieg in den Fußball.
+        </p>
+      </div>
+    </header>
+
+    <section class="jugend-intro">
+      <p>
+        Wir legen Wert auf Spaß, Teamgeist und eine altersgerechte Ausbildung. Wenn dein
+        Kind Fußball ausprobieren möchte, nutze gerne die Schnuppermöglichkeit und nimm
+        direkt Kontakt mit uns auf.
+      </p>
+      <a href="mailto:jugend@tsg-messel.de?subject=Schnuppertraining" class="btn">
+        Schnuppertraining anfragen
+      </a>
+    </section>
+
+    <section class="jugend-grid">
+      {jugendTeams.map((team) => (
+        <div class="jugend-grid__item">
+          <YouthTeamCard team={team} />
+        </div>
+      ))}
+    </section>
+
+    <section class="jugend-gallery">
+      <GalleryGrid
+        items={jugendGallery}
+        title="Einblicke aus Trainings & Turnieren"
+        description="Impressionen von Turnieren, besonderen Veranstaltungen und intensiven Trainingseinheiten unserer Nachwuchsteams."
+      />
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+.page {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+}
+
+.jugend-header {
+  display: flex;
+  gap: 1.4rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.jugend-header__logo {
+  width: 80px;
+  height: auto;
+}
+
+.jugend-intro {
+  margin-top: 1.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.jugend-grid {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.2rem;
+}
+
+.jugend-grid__item {
+  min-width: 0;
+}
+
+.jugend-gallery {
+  margin-top: 2.5rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1.4rem;
+  border-radius: 999px;
+  text-decoration: none;
+  border: 1px solid rgba(37,99,235,0.35);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+</style>

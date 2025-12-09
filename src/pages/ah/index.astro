@@ -1,0 +1,135 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { ahInfo } from "../../data/ah";
+
+const highlights = [
+	{
+		title: "Training & Spielpraxis",
+		description: `${ahInfo.trainingszeit} · ${ahInfo.ort}`,
+	},
+	{
+		title: "Gemeinschaft",
+		description: "Regelmäßiger Austausch nach dem Training sowie gemeinsame Aktionen.",
+	},
+	{
+		title: "Mitmachen",
+		description: "Einfach melden, vorbeischauen und mitkicksen – unabhängig vom Fitness-Level.",
+	},
+];
+---
+
+<BaseLayout title="Alte Herren – TSG Messel Fußball">
+	<div class="page ah-page">
+		<header class="ah-hero">
+			<p class="eyebrow">Tradition & Gemeinschaft</p>
+			<h1>Alte Herren der TSG Messel</h1>
+			<p>{ahInfo.beschreibung}</p>
+			<div class="ah-cta">
+				<a class="btn" href={`mailto:${ahInfo.kontakt}?subject=Interesse AH TSG Messel`}>
+					Kontakt aufnehmen
+				</a>
+			</div>
+		</header>
+
+		<section class="ah-details">
+			<div class="ah-details__card">
+				<h2>Trainingszeit</h2>
+				<p>{ahInfo.trainingszeit}</p>
+				<p>{ahInfo.ort}</p>
+			</div>
+			<div class="ah-details__card">
+				<h2>Abteilungsleiter AH</h2>
+				<p>{ahInfo.ansprechpartner}</p>
+				<a href={`mailto:${ahInfo.kontakt}`}>{ahInfo.kontakt}</a>
+			</div>
+			<div class="ah-details__card">
+				<h2>Koordination AH</h2>
+				<p>{ahInfo.ansprechpartner}</p>
+				<a href={`mailto:${ahInfo.kontakt}`}>{ahInfo.kontakt}</a>
+			</div>
+		</section>
+
+	</div>
+</BaseLayout>
+
+<style>
+.page {
+	max-width: 960px;
+	margin: 0 auto;
+	padding: 2.5rem 1.5rem 3rem;
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+
+.ah-hero {
+	background: linear-gradient(135deg, rgba(13, 71, 161, 0.08), rgba(25, 118, 210, 0.18));
+	border-radius: 24px;
+	padding: 2rem;
+	box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
+}
+
+.eyebrow {
+	text-transform: uppercase;
+	letter-spacing: 0.18em;
+	font-size: 0.8rem;
+	color: rgba(15, 23, 42, 0.6);
+	margin-bottom: 0.75rem;
+}
+
+.ah-cta {
+	margin-top: 1.2rem;
+}
+
+.btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.6rem 1.4rem;
+	border-radius: 999px;
+	text-decoration: none;
+	border: 1px solid rgba(15, 23, 42, 0.12);
+	font-weight: 600;
+	color: inherit;
+}
+
+.ah-details {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	gap: 1rem;
+}
+
+.ah-details__card {
+	padding: 1.25rem;
+	border-radius: 18px;
+	background: #fff;
+	box-shadow: 0 14px 26px rgba(15, 23, 42, 0.05);
+}
+
+.ah-details__card h2 {
+	margin-top: 0;
+	font-size: 1.1rem;
+}
+
+.link {
+	text-decoration: none;
+	font-weight: 600;
+}
+
+.ah-highlights {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	gap: 1rem;
+}
+
+.ah-highlights__item {
+	padding: 1.25rem;
+	border-radius: 18px;
+	border: 1px solid rgba(15, 23, 42, 0.08);
+	background: rgba(255, 255, 255, 0.85);
+}
+
+.ah-highlights__item h3 {
+	margin-top: 0;
+}
+</style>

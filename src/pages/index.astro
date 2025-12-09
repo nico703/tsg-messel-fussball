@@ -1,0 +1,148 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="TSG Messel – Fußballabteilung">
+  <div class="home">
+    <section class="hero">
+      <div class="hero__overlay">
+        <p class="eyebrow">TSG Messel Fußball</p>
+        <h1>Willkommen bei der Fußballabteilung der TSG Messel</h1>
+        <p>Von den Kleinsten bis zu den Alten Herren – bei uns dreht sich alles um den Ball.</p>
+      </div>
+    </section>
+
+    <section class="home-section">
+      <h2>Unsere Bereiche</h2>
+      <div class="teaser-grid">
+        <a href="/herren" class="teaser-card">
+          <h3>Herren</h3>
+          <p>1. &amp; 2. Mannschaft mit allen Infos zu Kader, Trainerteam und Spielbetrieb.</p>
+        </a>
+        <a href="/jugend" class="teaser-card">
+          <h3>Jugend</h3>
+          <p>Nachwuchs-Teams, Trainingszeiten und dein Weg ins Schnuppertraining.</p>
+        </a>
+        <a href="/ah" class="teaser-card">
+          <h3>Alte Herren</h3>
+          <p>Fußball, Geselligkeit und Tradition – unsere AH stellt sich vor.</p>
+        </a>
+        <a href="/news" class="teaser-card">
+          <h3>News &amp; Berichte</h3>
+          <p>Spielberichte, Veranstaltungen und besondere Ereignisse rund um die TSG.</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="home-section callout">
+      <h2>Lust mitzuspielen?</h2>
+      <p>
+        Egal ob Einsteiger, Rückkehrer oder Talent – wir freuen uns über neue Gesichter
+        in allen Altersklassen.
+      </p>
+      <div class="callout__actions">
+        <a href="/kontakt" class="btn">Kontakt aufnehmen</a>
+        <a href="/jugend" class="btn btn--ghost">
+          Mehr zur Jugendabteilung
+        </a>
+      </div>
+    </section>
+
+  </div>
+</BaseLayout>
+
+<style>
+.home {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.hero {
+  position: relative;
+  min-height: 50vh;
+  background-image: url("/images/hero-mannschaft.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.hero__overlay {
+  position: relative;
+  z-index: 1;
+  padding: 4rem 1.5rem;
+  max-width: 900px;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 0.75rem;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(15,23,42,0.7), rgba(37,99,235,0.35));
+}
+
+.hero h1,
+.hero p {
+  color: #fff;
+}
+
+.home-section {
+  padding: 2.5rem 1.5rem;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.teaser-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.4rem;
+  margin-top: 1.2rem;
+}
+
+.teaser-card {
+  border-radius: 16px;
+  padding: 1.2rem 1.4rem;
+  text-decoration: none;
+  background: rgba(255,255,255,0.9);
+  box-shadow: 0 12px 28px rgba(30,64,175,0.12);
+  color: inherit;
+}
+
+.callout {
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(59,130,246,0.15), rgba(129,212,250,0.35));
+  text-align: center;
+}
+
+.callout__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1.4rem;
+  border-radius: 999px;
+  text-decoration: none;
+  border: 1px solid rgba(37,99,235,0.35);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.btn--ghost {
+  background: transparent;
+}
+
+</style>

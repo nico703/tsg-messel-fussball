@@ -1,0 +1,132 @@
+---
+import type { JugendTeam } from "../data/jugend";
+const { team } = Astro.props as { team: JugendTeam };
+---
+
+<article class="yt-card">
+  <header class="yt-card__header">
+    <div>
+      <h3>{team.name}</h3>
+      <p class="yt-card__sub">{team.jahrgaenge}</p>
+    </div>
+    <span class="yt-card__tag">Jugend</span>
+  </header>
+
+  <div class="yt-card__section">
+    <p><strong>Trainer:</strong> {team.trainer}</p>
+    {team.coTrainer && <p><strong>Co-Trainer:</strong> {team.coTrainer}</p>}
+    <p><strong>Kontakt:</strong> <a href={`mailto:${team.kontaktMail}`}>{team.kontaktMail}</a></p>
+  </div>
+
+  <div class="yt-card__section">
+    <h4>Trainingszeiten</h4>
+    <ul class="yt-card__slots">
+      {team.slots.map((slot) => (
+        <li class="yt-card__slot">
+          <span class="yt-card__chip">{slot.wochentag}</span>
+          <span>{slot.uhrzeit}</span>
+          <span class="yt-card__platz">{slot.platz}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <footer class="yt-card__footer">
+    <a
+      class="yt-card__cta"
+      href={`mailto:${team.kontaktMail}?subject=Schnuppertraining bei der ${team.name}`}
+    >
+      Schnuppertraining anfragen
+    </a>
+  </footer>
+</article>
+
+<style>
+.yt-card {
+  border-radius: 18px;
+  padding: 18px 20px;
+  background: rgba(255,255,255,0.95);
+  box-shadow: 0 16px 30px rgba(30,64,175,0.18);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.yt-card__header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.yt-card__header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.yt-card__sub {
+  margin: 2px 0 0;
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+.yt-card__tag {
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(37,99,235,0.25);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.yt-card__section h4 {
+  margin: 0 0 4px;
+  font-size: 0.9rem;
+}
+
+.yt-card__slots {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.yt-card__slot {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  gap: 8px;
+  font-size: 0.9rem;
+  align-items: center;
+}
+
+.yt-card__chip {
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(59,130,246,0.15);
+}
+
+.yt-card__platz {
+  justify-self: flex-start;
+  font-size: 0.8rem;
+  opacity: 0.85;
+}
+
+.yt-card__footer {
+  margin-top: 4px;
+}
+
+.yt-card__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 14px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: 1px solid rgba(37,99,235,0.35);
+}
+</style>
