@@ -1,106 +1,241 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { jugendTeams } from "../../data/jugend";
-import YouthTeamCard from "../../components/YouthTeamCard.astro";
-import GalleryGrid from "../../components/GalleryGrid.astro";
-import { jugendGallery } from "../../data/jugendGallery";
 
-// später könntest du hier z.B. je nach Saison ein anderes Logo einbinden:
-const jugendLogo = "/images/jugend-logo-default.png";
+const heroImage = "/images/hero-jugend-home.jpg"; // bitte ein Jugendfoto hier ablegen
+const contactMail = "jugendleiter@tsg-messel.de";
+const whatsappNumber = "4917620182975";
+const whatsappText = encodeURIComponent(
+	"Hallo! Ich interessiere mich für ein Schnuppertraining bei der Jugend der TSG Messel."
+);
+const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappText}`;
+
+const values = [
+	{ title: "Teamgeist", text: "Gemeinsam stark – auf und neben dem Platz.", image: "/images/teamgeist.jpg" },
+	{ title: "Respekt", text: "Fairness, Rücksicht und ein gutes Miteinander sind Pflicht.", image: "/images/respekt.jpg" },
+	{ title: "Freude", text: "Fußball soll Spaß machen – bei jedem Training und Spiel.", image: "/images/freude.jpg" },
+];
 ---
 
-<BaseLayout title="Jugend – TSG Messel Fußball">
-  <div class="page">
-    <header class="jugend-header">
-      <img src={jugendLogo} alt="TSG Messel Jugend" class="jugend-header__logo" />
-      <div>
-        <h1>Jugendfußball bei der TSG Messel</h1>
-        <p>
-          Von den Kleinsten bis zur A-Jugend – unsere Jugendabteilung bietet Kindern
-          und Jugendlichen einen modernen und gut betreuten Einstieg in den Fußball.
+<BaseLayout
+  title="Jugend – TSG Messel Fußball"
+  description="Hier beginnt der Weg: Jugendfußball bei der TSG Messel mit Teamgeist, Respekt und Freude."
+>
+  <!-- HERO -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0">
+      <img
+        src="/images/hero-jugend-page.jpg"
+        alt="Jugendfußball bei der TSG Messel"
+        class="h-full w-full object-cover"
+        fetchpriority="high"
+        decoding="async"
+        width="1920"
+        height="1080"
+      />
+      <div class="absolute inset-0 bg-gradient-to-b from-[#0f172a]/80 via-[#0f172a]/78 to-[#0f172a]/90"></div>
+    </div>
+    <div class="relative mx-auto flex max-w-6xl flex-col gap-4 px-4 py-12 md:py-16">
+      <p class="text-xs font-semibold uppercase tracking-[0.25em] text-[color:var(--tsg-accent)]">Jugendabteilung</p>
+      <h1 class="text-3xl font-bold leading-tight text-white text-balance md:text-4xl">Hier beginnt der Weg.</h1>
+      <p class="max-w-2xl text-sm text-[color:var(--tsg-accent)] md:text-base text-balance">
+        In der Jugend der TSG Messel wachsen Kinder in ein starkes Miteinander hinein: Teamgeist, Respekt und Freude
+        am Spiel. Viele unserer heutigen Aktiven haben genau hier angefangen.
+      </p>
+      <div class="mt-2 flex flex-wrap gap-4">
+        <a
+          href={whatsappUrl}
+          class="inline-flex items-center justify-center rounded-full bg-[#1e3a8a] px-6 py-2.5 text-sm font-semibold text-white shadow-md shadow-[#1e3a8a]/30 transition hover:-translate-y-[1px] hover:bg-[#254da8]"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Schnuppertraining anfragen
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WERTE -->
+  <section class="mx-auto max-w-6xl px-4 py-12 md:py-16">
+    <div class="grid gap-8 md:grid-cols-[1.2fr,1fr] md:items-center">
+      <div class="space-y-4">
+        <h2 class="text-2xl font-bold text-slate-900 md:text-3xl">Warum Jugend bei der TSG?</h2>
+        <p class="text-sm text-[#93b0ff] md:text-base text-balance">
+          Kinder sollen sich wohlfühlen – im Training, am Spieltag und in der Gemeinschaft. Wir fördern altersgerecht,
+          mit viel Ballkontakten, Spielformen und klaren Werten. Eltern sehen, wie ihre Kinder wachsen – sportlich und
+          als Menschen.
+        </p>
+        <p class="text-sm text-slate-700 md:text-base">
+          Viele unserer Aktiven haben hier begonnen und geben ihre Erfahrung zurück. Jugend und Aktive gehören zusammen.
         </p>
       </div>
-    </header>
+      <div class="grid gap-4 md:grid-cols-3">
+        {values.map((item) => (
+          <article class="relative overflow-hidden rounded-xl border border-[#1e3a8a]/20 shadow-[0_10px_22px_rgba(30,64,175,0.08)]">
+            <div class="absolute inset-0">
+              <img src={item.image} alt={item.title} class="h-full w-full object-cover" loading="lazy" />
+              <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/35 to-black/60"></div>
+            </div>
+            <div class="relative flex h-44 flex-col justify-end gap-2 p-4 text-white">
+              <p class="text-xs font-semibold uppercase tracking-[0.2em] text-white/85">{item.title}</p>
+              <p class="text-sm text-white">{item.text}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
 
-    <section class="jugend-intro">
-      <p>
-        Wir legen Wert auf Spaß, Teamgeist und eine altersgerechte Ausbildung. Wenn dein
-        Kind Fußball ausprobieren möchte, nutze gerne die Schnuppermöglichkeit und nimm
-        direkt Kontakt mit uns auf.
-      </p>
-      <a href="mailto:jugend@tsg-messel.de?subject=Schnuppertraining" class="btn">
-        Schnuppertraining anfragen
-      </a>
-    </section>
-
-    <section class="jugend-grid">
-      {jugendTeams.map((team) => (
-        <div class="jugend-grid__item">
-          <YouthTeamCard team={team} />
-        </div>
-      ))}
-    </section>
-
-    <section class="jugend-gallery">
-      <GalleryGrid
-        items={jugendGallery}
-        title="Einblicke aus Trainings & Turnieren"
-        description="Impressionen von Turnieren, besonderen Veranstaltungen und intensiven Trainingseinheiten unserer Nachwuchsteams."
+  <!-- ALTERSKLASSEN -->
+  <section class="relative overflow-hidden border-y border-[color:var(--tsg-border)] bg-gradient-to-b from-[color:var(--tsg-surface)] via-[color:var(--tsg-surface)] to-[color:var(--tsg-surface-muted)]">
+    <div class="pointer-events-none absolute inset-0 opacity-20">
+      <img
+        src="/images/grubi-fuba.png"
+        alt=""
+        class="h-full w-full object-contain"
+        loading="lazy"
+        decoding="async"
       />
-    </section>
-  </div>
+    </div>
+    <div class="relative mx-auto max-w-6xl px-4 py-12 md:py-16">
+      <h2 class="text-2xl font-bold text-slate-900 md:text-3xl">Unsere Jugendteams.</h2>
+      <p class="mt-3 text-sm text-[color:var(--tsg-accent)] md:text-base">
+        Von den Bambini bis zur D-Jugend – bei uns finden Kinder und Jugendliche ihre passende Mannschaft.
+      </p>
+
+      <div class="mt-8 grid gap-4 md:grid-cols-3">
+        {jugendTeams.map((team) => (
+          <article class="rounded-2xl border border-[color:var(--tsg-border)] bg-[color:var(--tsg-surface)] p-4 shadow-[0_16px_30px_rgba(30,64,175,0.08)]">
+            <div class="flex items-start justify-between gap-2">
+              <div>
+                <h3 class="text-sm font-semibold text-slate-900 md:text-base">{team.name}</h3>
+                <p class="mt-1 text-xs font-medium uppercase tracking-[0.18em] text-[color:var(--tsg-accent)]">{team.jahrgaenge}</p>
+              </div>
+            </div>
+            <p class="mt-2 text-sm text-slate-800">Trainer: {team.trainer}</p>
+            {team.coTrainer && <p class="text-sm text-slate-800">Co-Trainer: {team.coTrainer}</p>}
+
+            <div class="mt-3 space-y-2 text-sm text-slate-800">
+              <p class="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Trainingszeiten</p>
+              <ul class="space-y-1">
+                {team.slots.map((slot) => (
+                  <li class="flex gap-2">
+                    <span class="w-28">{slot.wochentag}</span>
+                    <span class="w-28">{slot.uhrzeit}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SCHNUPPERINFOS -->
+  <section class="bg-gradient-to-b from-[color:var(--tsg-surface)] via-[color:var(--tsg-surface)] to-[color:var(--tsg-surface-muted)]">
+    <div class="mx-auto max-w-6xl px-4 py-12 md:py-16">
+      <div class="grid gap-8 md:grid-cols-[1.1fr,0.9fr] md:items-start">
+        <div class="rounded-2xl border border-[color:var(--tsg-border)] bg-[color:var(--tsg-surface)]/95 p-5 text-sm text-slate-800 shadow-[0_18px_32px_rgba(30,64,175,0.08)] md:p-6">
+          <h3 class="text-base font-semibold text-slate-900">Wie läuft ein Schnuppertraining ab?</h3>
+          <p class="mt-2">
+            Einfach vorbeikommen, einsteigen, mitmachen. Ein kurzer Hinweis vorab hilft uns bei der Planung –
+            am schnellsten per WhatsApp.
+          </p>
+          <p class="mt-2">
+            In den ersten Einheiten geht es um Spaß, Bewegung und ein erstes Kennenlernen von Team und Trainerteam.
+          </p>
+          <p class="mt-3 text-xs text-slate-500">
+            Tipp: Witterungsgerechte Sportkleidung, ausreichend zu trinken und – wenn vorhanden – Fußballschuhe mitbringen.
+          </p>
+          <a
+            href={whatsappUrl}
+            class="mt-4 inline-flex w-fit items-center gap-2 rounded-full bg-[#1e3a8a] px-5 py-2 text-sm font-semibold text-white shadow-md shadow-[#1e3a8a]/30 transition hover:-translate-y-[1px] hover:bg-[#254da8]"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Per WhatsApp melden
+          </a>
+        </div>
+
+        <div class="rounded-2xl border border-[color:var(--tsg-border)] bg-[color:var(--tsg-surface)]/95 p-5 text-sm text-slate-800 shadow-[0_18px_32px_rgba(30,64,175,0.08)] md:p-6">
+          <h3 class="text-base font-semibold text-slate-900">Kontakt</h3>
+          <p class="mt-2">Schreib uns direkt – wir melden uns so schnell wie möglich.</p>
+
+          <form
+            class="mt-3 space-y-3"
+            action={`mailto:${contactMail}`}
+            method="post"
+            encType="text/plain"
+          >
+            <div class="space-y-1">
+              <label class="text-xs font-semibold text-slate-600" for="name">Name *</label>
+              <input
+                id="name"
+                name="Name"
+                type="text"
+                required
+                class="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm focus:border-[#1e3a8a] focus:outline-none focus:ring-2 focus:ring-[#93b0ff]/60"
+              />
+            </div>
+
+            <div class="space-y-1">
+              <label class="text-xs font-semibold text-slate-600" for="email">E-Mail *</label>
+              <input
+                id="email"
+                name="E-Mail"
+                type="email"
+                required
+                class="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm focus:border-[#1e3a8a] focus:outline-none focus:ring-2 focus:ring-[#93b0ff]/60"
+              />
+            </div>
+
+            <div class="space-y-1">
+              <label class="text-xs font-semibold text-slate-600" for="message">Nachricht *</label>
+              <textarea
+                id="message"
+                name="Nachricht"
+                required
+                rows="4"
+                class="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm focus:border-[#1e3a8a] focus:outline-none focus:ring-2 focus:ring-[#93b0ff]/60"
+              ></textarea>
+            </div>
+
+            <button
+              type="submit"
+              class="inline-flex w-full items-center justify-center rounded-full bg-[#1e3a8a] px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-[#1e3a8a]/30 transition hover:-translate-y-[1px] hover:bg-[#254da8]"
+            >
+              Nachricht senden
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FÖRDERUNG -->
+  <section class="border-t border-[color:var(--tsg-border)] bg-gradient-to-b from-[color:var(--tsg-surface)] via-[color:var(--tsg-surface)] to-[color:var(--tsg-surface-muted)]">
+    <div class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+      <div class="grid gap-4 rounded-2xl border border-[color:var(--tsg-border)] bg-[color:var(--tsg-surface)]/95 p-5 shadow-[0_18px_32px_rgba(30,64,175,0.08)] md:grid-cols-[auto,1fr] md:items-center md:p-6">
+        <div class="flex h-16 w-16 items-center justify-center overflow-hidden rounded-xl bg-white">
+          <img src="/images/foerderung-hessen.png" alt="Förderung durch das Land Hessen" class="h-full w-full object-contain" loading="lazy" />
+        </div>
+        <div class="space-y-2">
+          <p class="text-xs font-semibold uppercase tracking-[0.18em] text-[#93b0ff]">
+            Förderung durch das Land Hessen
+          </p>
+          <h3 class="text-lg font-semibold text-slate-900">Regionalbudget macht Nachwuchsprojekte möglich</h3>
+          <p class="text-sm text-slate-800">
+            Durch Fördermittel des Landes Hessen im Rahmen des Regionalbudgets und in enger Kooperation mit der Gemeinde
+            Messel konnten wir wichtige Anschaffungen realisieren: eine JBL Musikbox mit Funkmikrofon und acht hochwertige
+            Mini-Tore für Spielfeste.
+          </p>
+          <p class="text-sm text-slate-800">
+            So setzen wir die neuen Spielformen im Kinderfußball besser um und begeistern noch mehr Messeler Kinder.
+            Vielen Dank an alle, die diese Förderung möglich gemacht haben!
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
-
-<style>
-.page {
-  max-width: 1080px;
-  margin: 0 auto;
-  padding: 2.5rem 1.5rem;
-}
-
-.jugend-header {
-  display: flex;
-  gap: 1.4rem;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.jugend-header__logo {
-  width: 80px;
-  height: auto;
-}
-
-.jugend-intro {
-  margin-top: 1.8rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-}
-
-.jugend-grid {
-  margin-top: 2rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.2rem;
-}
-
-.jugend-grid__item {
-  min-width: 0;
-}
-
-.jugend-gallery {
-  margin-top: 2.5rem;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.6rem 1.4rem;
-  border-radius: 999px;
-  text-decoration: none;
-  border: 1px solid rgba(37,99,235,0.35);
-  font-weight: 600;
-  font-size: 0.9rem;
-}
-</style>

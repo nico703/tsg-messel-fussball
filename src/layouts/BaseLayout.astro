@@ -1,4 +1,6 @@
 ---
+import "../styles/global.css";
+
 interface Props {
 	title?: string;
 	description?: string;
@@ -9,8 +11,12 @@ const {
 	description = "Offizielle Website der Fußballabteilung der TSG Messel.",
 } = Astro.props as Props;
 
+const baseTitle = "TSG Messel Fußball";
+const fullTitle = title ? `${title} | ${baseTitle}` : baseTitle;
+const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).toString() : Astro.url.pathname;
+const ogImage = "/images/header-logo.png";
+
 const navItems = [
-	{ href: "/", label: "Start" },
 	{ href: "/ueber-uns", label: "Über uns" },
 	{ href: "/herren", label: "Herren" },
 	{ href: "/jugend", label: "Jugend" },
@@ -28,8 +34,18 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
+		<title>{fullTitle}</title>
 		<meta name="description" content={description} />
+		<link rel="canonical" href={canonical} />
+		<meta property="og:title" content={fullTitle} />
+		<meta property="og:description" content={description} />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonical} />
+		<meta property="og:image" content={ogImage} />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={fullTitle} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImage} />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
@@ -38,6 +54,7 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
 		/>
 	</head>
 	<body>
+		<a href="#main-content" class="skip-link">Zum Inhalt springen</a>
 		<div class="layout">
 			<header class="site-header">
 				<div class="site-header__inner">
@@ -51,7 +68,7 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
 						</div>
 					</a>
 					<nav class="site-nav" aria-label="Hauptnavigation">
-						<ul>
+						<ul class="site-nav__list">
 							{navItems.map((item) => {
 								const active =
 									item.href === "/"
@@ -59,7 +76,7 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
 										: currentPath.startsWith(item.href);
 								return (
 									<li>
-										<a href={item.href} class:list={{ active }}>
+										<a href={item.href} class:list={{ active }} aria-current={active ? "page" : undefined}>
 											{item.label}
 										</a>
 									</li>
@@ -74,14 +91,35 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
 						>
 							Online-Shop
 						</a>
-						<a
-							class="site-nav__cta"
-							href="/kontakt"
-						>
-							Interesse?
-						</a>
+						<button class="site-nav__toggle" type="button" aria-label="Menü öffnen" aria-expanded="false">
+							<span class="sr-only">Menü öffnen</span>
+							<span></span>
+							<span></span>
+							<span></span>
+						</button>
 					</nav>
 				</div>
+				<div class="mobile-nav" aria-hidden="true">
+					<ul>
+						{navItems.map((item) => (
+							<li>
+								<a href={item.href}>{item.label}</a>
+							</li>
+						))}
+					</ul>
+					<div class="mobile-nav__actions">
+						<a
+							class="site-nav__shop"
+							href="https://team.jako.com/de-de/team/tsg_messel/?page=1&sort_by="
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							Online-Shop
+						</a>
+						
+					</div>
+				</div>
+				<div class="mobile-nav__backdrop" aria-hidden="true"></div>
 			</header>
 
 			<main id="main-content" class="site-main">
@@ -90,8 +128,10 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
 
 			<footer class="site-footer">
 				<div class="site-footer__logos">
-					<img src="/images/sponsor1.png" alt="Sponsor 1" loading="lazy" />
-					<img src="/images/sponsor2.png" alt="Sponsor 2" loading="lazy" />
+					<img src="/images/lunimi.png" alt="Lunimi GmbH" loading="lazy" />
+					<img src="/images/tuev-hessen.png" alt="TÜV Hessen" loading="lazy" />
+					<img src="/images/local1.png" alt="Lokaler Sponsor 1" loading="lazy" />
+					<img src="/images/local2.png" alt="Lokaler Sponsor 2" loading="lazy" />
 				</div>
 				<div class="site-footer__links">
 					<a href="/impressum">Impressum</a>
@@ -99,19 +139,48 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
 				</div>
 			</footer>
 		</div>
+		<script>
+			const toggle = document.querySelector(".site-nav__toggle");
+			const backdrop = document.querySelector(".mobile-nav__backdrop");
+			const body = document.body;
+
+			const closeMenu = () => {
+				body.classList.remove("menu-open");
+				if (toggle) toggle.setAttribute("aria-expanded", "false");
+			};
+
+			toggle?.addEventListener("click", () => {
+				const isOpen = body.classList.toggle("menu-open");
+				toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+			});
+
+			backdrop?.addEventListener("click", closeMenu);
+
+			// Schließt das Menü nach Klick auf einen Mobile-Link
+			document.querySelectorAll(".mobile-nav a").forEach((link) => {
+				link.addEventListener("click", closeMenu);
+			});
+		</script>
 	</body>
 </html>
 
 <style>
 :global(:root) {
 	font-family: "Outfit", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-	color: #0f172a;
-	background-color: #e6f0ff;
-	--surface: rgba(255, 255, 255, 0.95);
+	color: var(--tsg-dark);
+	background-color: var(--tsg-surface);
+	--tsg-primary: #1e3a8a;
+	--tsg-accent: #93b0ff;
+	--tsg-surface: #ffffff;
+	--tsg-surface-muted: #e9f2ff;
+	--tsg-border: #d6e2ff;
+	--tsg-dark: #0f172a;
+	--surface: rgba(255, 255, 255, 0.98);
 	--surface-strong: #ffffff;
-	--accent: #1d4ed8;
-	--accent-soft: linear-gradient(135deg, rgba(37, 99, 235, 0.18), rgba(13, 148, 136, 0.12));
-	--bg-gradient: linear-gradient(180deg, #e7f0ff 0%, #f6fbff 45%, #e3f0ff 100%);
+	--accent: var(--tsg-primary);
+	--accent-2: var(--tsg-accent);
+	--accent-soft: linear-gradient(135deg, rgba(30, 58, 138, 0.18), rgba(14, 165, 233, 0.14));
+	--bg-gradient: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(233, 242, 255, 0.65) 40%, rgba(233, 242, 255, 0.85) 100%);
 }
 
 :global(body) {
@@ -119,6 +188,8 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
 	min-height: 100vh;
 	background: var(--bg-gradient);
 	color: inherit;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 .layout {
@@ -127,11 +198,43 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
 	flex-direction: column;
 }
 
+.skip-link {
+	position: absolute;
+	left: -999px;
+	top: auto;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	background: var(--tsg-primary);
+	color: #fff;
+	padding: 0.5rem 1rem;
+	border-radius: 999px;
+	z-index: 20;
+}
+
+.skip-link:focus {
+	left: 1rem;
+	top: 1rem;
+	width: auto;
+	height: auto;
+}
+
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	border: 0;
+}
+
 .site-header {
 	position: sticky;
 	top: 0;
 	backdrop-filter: blur(16px);
-	background: rgba(230, 241, 255, 0.92);
+	background: rgba(255, 255, 255, 0.92);
 	border-bottom: 1px solid rgba(15, 23, 42, 0.06);
 	z-index: 10;
 }
@@ -155,15 +258,18 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
 }
 
 .brand__logo {
-	width: 48px;
-	height: 48px;
-	border-radius: 50%;
-	background: #fff;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	box-shadow: 0 8px 20px rgba(15, 23, 42, 0.15);
-	padding: 0.3rem;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Hintergrund entfernen */
+  background: transparent;
+  /* Rundungen entfernen – Logo selbst ist rund */
+  border-radius: 0;
+  /* Schatten entfernen */
+  box-shadow: none;
+  padding: 0;
 }
 
 .brand__logo img {
@@ -203,18 +309,53 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
 	padding: 0;
 }
 
+.site-nav__list {
+	display: flex;
+}
+
 .site-nav a {
 	text-decoration: none;
 	font-weight: 500;
 	padding: 0.35rem 0.75rem;
 	border-radius: 999px;
 	color: inherit;
-	transition: background 0.2s ease, color 0.2s ease;
+	transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+	outline: none;
 }
 
 .site-nav a.active {
-	background: rgba(37, 99, 235, 0.12);
-	color: #1d4ed8;
+	background: rgba(30, 58, 138, 0.14);
+	color: var(--tsg-primary);
+}
+
+.site-nav a:hover {
+	background: rgba(30, 58, 138, 0.12);
+	color: var(--tsg-primary);
+}
+
+.site-nav a:focus-visible {
+	box-shadow: 0 0 0 2px rgba(30, 58, 138, 0.3);
+}
+
+.site-nav__toggle {
+	display: none;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 4px;
+	width: 42px;
+	height: 42px;
+	border-radius: 999px;
+	border: 1px solid rgba(15, 23, 42, 0.08);
+	background: rgba(255, 255, 255, 0.9);
+	cursor: pointer;
+}
+
+.site-nav__toggle span {
+	display: block;
+	width: 20px;
+	height: 2px;
+	background: #0f172a;
 }
 
 .site-nav__cta {
@@ -238,7 +379,7 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
 	padding: 0.45rem 1rem;
 	border-radius: 999px;
 	border: 1px solid rgba(37, 99, 235, 0.25);
-	color: #1e3a8a;
+	color: var(--tsg-primary);
 	background: linear-gradient(135deg, rgba(226, 239, 255, 0.9), rgba(219, 244, 255, 0.9));
 }
 
@@ -257,6 +398,80 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
 	background: rgba(227, 241, 255, 0.7);
 }
 
+/* Mobile Nav */
+.mobile-nav {
+	position: fixed;
+	inset: 0 0 0 35%;
+	background: rgba(255, 255, 255, 0.98);
+	border-left: 1px solid rgba(15, 23, 42, 0.08);
+	padding: 1.5rem;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	transform: translateX(100%);
+	transition: transform 0.25s ease;
+	z-index: 9;
+}
+
+.mobile-nav ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: grid;
+	gap: 0.6rem;
+}
+
+.mobile-nav a {
+	text-decoration: none;
+	color: #0f172a;
+	font-weight: 600;
+	font-size: 1rem;
+	padding: 0.4rem 0.2rem;
+	display: inline-block;
+}
+
+.mobile-nav__actions {
+	display: flex;
+	gap: 0.6rem;
+	flex-wrap: wrap;
+}
+
+.mobile-nav__backdrop {
+	position: fixed;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.45);
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.25s ease;
+	z-index: 8;
+}
+
+body.menu-open .mobile-nav {
+	transform: translateX(0);
+}
+
+body.menu-open .mobile-nav__backdrop {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+@media (max-width: 900px) {
+	.site-nav__list,
+	.site-nav__shop,
+	.site-nav__cta {
+		display: none;
+	}
+
+	.site-nav__toggle {
+		display: inline-flex;
+	}
+}
+
+@media (max-width: 640px) {
+	.mobile-nav {
+		inset: 0 0 0 20%;
+	}
+}
 .site-footer__logos {
 	display: flex;
 	gap: 1.5rem;

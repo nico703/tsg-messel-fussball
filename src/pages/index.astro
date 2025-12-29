@@ -1,148 +1,219 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const valueSlides = [
+  {
+    title: "Teamgeist",
+    text: "Gemeinsam stark – auf und neben dem Platz.",
+    image: "/images/teamgeist.jpg",
+  },
+  {
+    title: "Respekt",
+    text: "Fairness, Rücksicht und ein gutes Miteinander sind Pflicht.",
+    image: "/images/respekt.jpg",
+  },
+  {
+    title: "Freude",
+    text: "Fußball soll Spaß machen – im Training, am Spieltag, in der Gemeinschaft.",
+    image: "/images/freude.jpg",
+  },
+];
 ---
 
-<BaseLayout title="TSG Messel – Fußballabteilung">
-  <div class="home">
-    <section class="hero">
-      <div class="hero__overlay">
-        <p class="eyebrow">TSG Messel Fußball</p>
-        <h1>Willkommen bei der Fußballabteilung der TSG Messel</h1>
-        <p>Von den Kleinsten bis zu den Alten Herren – bei uns dreht sich alles um den Ball.</p>
-      </div>
-    </section>
+<BaseLayout title="TSG Messel – Fußball">
+  <!-- HERO -->
+  <section class="relative h-[70vh] w-full overflow-hidden md:h-[80vh]">
+    <img
+      src="/images/hero-jugend-home.jpg"
+      alt="TSG Messel Fußball – Gemeinschaft und Begeisterung"
+      class="absolute inset-0 h-full w-full object-cover"
+      fetchpriority="high"
+      decoding="async"
+      width="1920"
+      height="1080"
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-slate-950/65 via-slate-950/75 to-slate-950/90"></div>
 
-    <section class="home-section">
-      <h2>Unsere Bereiche</h2>
-      <div class="teaser-grid">
-        <a href="/herren" class="teaser-card">
-          <h3>Herren</h3>
-          <p>1. &amp; 2. Mannschaft mit allen Infos zu Kader, Trainerteam und Spielbetrieb.</p>
-        </a>
-        <a href="/jugend" class="teaser-card">
-          <h3>Jugend</h3>
-          <p>Nachwuchs-Teams, Trainingszeiten und dein Weg ins Schnuppertraining.</p>
-        </a>
-        <a href="/ah" class="teaser-card">
-          <h3>Alte Herren</h3>
-          <p>Fußball, Geselligkeit und Tradition – unsere AH stellt sich vor.</p>
-        </a>
-        <a href="/news" class="teaser-card">
-          <h3>News &amp; Berichte</h3>
-          <p>Spielberichte, Veranstaltungen und besondere Ereignisse rund um die TSG.</p>
-        </a>
-      </div>
-    </section>
-
-    <section class="home-section callout">
-      <h2>Lust mitzuspielen?</h2>
-      <p>
-        Egal ob Einsteiger, Rückkehrer oder Talent – wir freuen uns über neue Gesichter
-        in allen Altersklassen.
+    <div class="relative z-10 mx-auto flex h-full max-w-6xl flex-col justify-end px-4 pb-16">
+      <h1 class="text-4xl font-extrabold leading-tight text-white text-balance md:text-6xl">
+        Eine Gemeinschaft,
+        <span class="block text-[#93b0ff]">die begeistert.</span>
+      </h1>
+      <p class="mt-4 max-w-xl text-base text-slate-200 text-balance md:text-lg">
+        Fußball bei der TSG Messel – von den Kleinsten bis zu den Aktiven.
+        Ein Verein, der von Gemeinschaft, Begeisterung und Stolz lebt.
       </p>
-      <div class="callout__actions">
-        <a href="/kontakt" class="btn">Kontakt aufnehmen</a>
-        <a href="/jugend" class="btn btn--ghost">
-          Mehr zur Jugendabteilung
+
+      <div class="mt-8 flex flex-wrap gap-4">
+        <a href="/jugend" class="btn-solid">
+          Zur Jugend
+        </a>
+        <a href="/herren" class="btn-ghost">
+          Zu den Aktiven
         </a>
       </div>
-    </section>
+    </div>
+  </section>
 
-  </div>
+  <!-- WERTE -->
+  <section class="mx-auto max-w-6xl px-4 py-16">
+    <h2 class="text-center text-3xl font-bold text-slate-900 md:text-4xl">
+      Gemeinschaft · Begeisterung · Stolz
+    </h2>
+    <p class="mx-auto mt-4 max-w-2xl text-center text-[color:var(--tsg-accent)]">
+      Unsere Werte prägen den Verein – auf dem Platz und im Vereinsleben.
+      Sie verbinden Generationen.
+    </p>
+
+    <div class="mt-12 grid gap-6 md:grid-cols-3">
+      {valueSlides.map((item) => (
+        <article class="relative overflow-hidden rounded-2xl border border-[color:var(--tsg-border)] bg-[color:var(--tsg-surface)] shadow-[0_16px_30px_rgba(30,64,175,0.08)]">
+          <div class="absolute inset-0">
+            <img src={item.image} alt={item.title} class="h-full w-full object-cover" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-b from-black/25 via-black/30 to-black/55"></div>
+          </div>
+          <div class="relative flex h-60 flex-col justify-end gap-3 p-5 text-white">
+            <span class="inline-flex w-fit rounded-full bg-white/15 px-4 py-1 text-xs font-semibold uppercase tracking-[0.18em]">
+              {item.title}
+            </span>
+            <p class="text-sm md:text-base">{item.text}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- JUGEND -->
+  <section class="border-y border-[color:var(--tsg-border)] bg-gradient-to-b from-[color:var(--tsg-surface)] via-[color:var(--tsg-surface)] to-[color:var(--tsg-surface-muted)] py-16">
+    <div class="mx-auto grid max-w-6xl gap-10 px-4 md:grid-cols-2 md:items-center">
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-[0.25em] text-[color:var(--tsg-accent)]">
+          Jugend
+        </p>
+        <h2 class="mt-3 text-3xl font-bold text-slate-900 md:text-4xl">
+          Hier beginnt der Weg.
+        </h2>
+        <p class="mt-4 text-sm text-[color:var(--tsg-accent)] md:text-base">
+          Die Jugendabteilung ist das Fundament der TSG Messel.
+          Hier lernen Kinder Fußball – und Werte wie Respekt, Verantwortung und Teamgeist.
+        </p>
+
+        <a
+          href="/jugend"
+          class="mt-6 inline-block rounded-full bg-[#1e3a8a] px-6 py-2.5 text-sm font-semibold text-white shadow-md shadow-[#1e3a8a]/30 transition hover:-translate-y-[1px] hover:bg-[#254da8]"
+        >
+          Schnuppertraining & Infos
+        </a>
+      </div>
+
+      <div class="relative overflow-hidden rounded-2xl border border-[color:var(--tsg-border)]">
+        <img
+          src="/images/hero-jugend-home.jpg"
+          alt="Jugendtraining TSG Messel"
+          class="h-64 w-full object-cover md:h-80"
+          loading="lazy"
+          decoding="async"
+          width="1200"
+          height="600"
+        />
+        <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AKTIVE -->
+  <section class="mx-auto max-w-6xl px-4 py-16">
+    <div class="grid gap-10 md:grid-cols-2 md:items-center">
+      <div class="relative overflow-hidden rounded-2xl border border-[color:var(--tsg-border)] md:order-2">
+        <img
+          src="/images/hero-aktive-home.jpg"
+          alt="Aktive Mannschaft – TSG Messel"
+          class="h-64 w-full object-cover md:h-80"
+          loading="lazy"
+          decoding="async"
+          width="1200"
+          height="600"
+        />
+        <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent"></div>
+      </div>
+
+      <div class="md:order-1">
+        <p class="text-xs font-semibold uppercase tracking-[0.25em] text-[color:var(--tsg-accent)]">
+          Aktive Mannschaften
+        </p>
+        <h2 class="mt-3 text-3xl font-bold text-slate-900 md:text-4xl">
+          Unsere Aktiven sind Vorbilder.
+        </h2>
+        <p class="mt-4 text-sm text-[color:var(--tsg-accent)] md:text-base">
+          Die 1. und 2. Mannschaft stehen für Einsatz, Zusammenhalt und den
+          sportlichen Weg, den viele unserer Jugendspieler gehen können.
+        </p>
+
+        <a
+          href="/herren"
+          class="mt-6 inline-block rounded-full bg-[#1e3a8a] px-6 py-2.5 text-sm font-semibold text-white shadow-md shadow-[#1e3a8a]/30 transition hover:-translate-y-[1px] hover:bg-[#254da8]"
+        >
+          Zu den Herrenmannschaften
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWS / AKTUELLES -->
+  <section class="border-t border-[color:var(--tsg-border)] bg-gradient-to-b from-[color:var(--tsg-surface)] via-[color:var(--tsg-surface)] to-[color:var(--tsg-surface-muted)] py-16">
+    <div class="mx-auto max-w-6xl px-4">
+      <div class="flex flex-col justify-between gap-4 md:flex-row md:items-end">
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-[0.25em] text-[color:var(--tsg-accent)]">
+            Aktuelles
+          </p>
+          <h2 class="mt-2 text-3xl font-bold text-slate-900 md:text-4xl">
+            Das passiert bei uns.
+          </h2>
+        </div>
+
+        <a href="/news" class="text-sm font-semibold text-[color:var(--tsg-primary)] hover:text-[#254da8]">
+          Alle Beiträge ansehen →
+        </a>
+      </div>
+
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        <!-- News Card 1 -->
+        <article class="overflow-hidden rounded-2xl border border-[color:var(--tsg-border)] bg-[color:var(--tsg-surface)] shadow-[0_16px_30px_rgba(30,64,175,0.08)]">
+          <div class="p-4">
+            <h3 class="text-sm font-semibold text-slate-900">
+              Jugendturnier in Messel
+            </h3>
+            <p class="mt-2 text-sm text-slate-700">
+              Spannende Spiele, faire Duelle und viel Applaus – unsere Jugendteams haben alles gegeben.
+            </p>
+          </div>
+        </article>
+
+        <!-- News Card 2 -->
+        <article class="overflow-hidden rounded-2xl border border-[color:var(--tsg-border)] bg-[color:var(--tsg-surface)] shadow-[0_16px_30px_rgba(30,64,175,0.08)]">
+          <div class="p-4">
+            <h3 class="text-sm font-semibold text-slate-900">
+              Heimsieg der 1. Mannschaft
+            </h3>
+            <p class="mt-2 text-sm text-slate-700">
+              Starker Einsatz und tolle Stimmung am Platz – drei wichtige Punkte bleiben in Messel.
+            </p>
+          </div>
+        </article>
+
+        <!-- News Card 3 -->
+        <article class="overflow-hidden rounded-2xl border border-[color:var(--tsg-border)] bg-[color:var(--tsg-surface)] shadow-[0_16px_30px_rgba(30,64,175,0.08)]">
+          <div class="p-4">
+            <h3 class="text-sm font-semibold text-slate-900">
+              Sommerfest der Fußballabteilung
+            </h3>
+            <p class="mt-2 text-sm text-slate-700">
+              Ein Fest für die ganze TSG-Familie – mit Musik, Grill und vielen lachenden Gesichtern.
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
-
-<style>
-.home {
-  display: flex;
-  flex-direction: column;
-  gap: 2.5rem;
-}
-
-.hero {
-  position: relative;
-  min-height: 50vh;
-  background-image: url("/images/hero-mannschaft.jpg");
-  background-size: cover;
-  background-position: center;
-}
-
-.hero__overlay {
-  position: relative;
-  z-index: 1;
-  padding: 4rem 1.5rem;
-  max-width: 900px;
-}
-
-.eyebrow {
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  font-size: 0.8rem;
-  color: rgba(255,255,255,0.8);
-  margin-bottom: 0.75rem;
-}
-
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(15,23,42,0.7), rgba(37,99,235,0.35));
-}
-
-.hero h1,
-.hero p {
-  color: #fff;
-}
-
-.home-section {
-  padding: 2.5rem 1.5rem;
-  max-width: 1080px;
-  margin: 0 auto;
-}
-
-.teaser-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.4rem;
-  margin-top: 1.2rem;
-}
-
-.teaser-card {
-  border-radius: 16px;
-  padding: 1.2rem 1.4rem;
-  text-decoration: none;
-  background: rgba(255,255,255,0.9);
-  box-shadow: 0 12px 28px rgba(30,64,175,0.12);
-  color: inherit;
-}
-
-.callout {
-  border-radius: 18px;
-  background: linear-gradient(135deg, rgba(59,130,246,0.15), rgba(129,212,250,0.35));
-  text-align: center;
-}
-
-.callout__actions {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.8rem;
-  margin-top: 1rem;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.6rem 1.4rem;
-  border-radius: 999px;
-  text-decoration: none;
-  border: 1px solid rgba(37,99,235,0.35);
-  font-weight: 600;
-  font-size: 0.9rem;
-}
-
-.btn--ghost {
-  background: transparent;
-}
-
-</style>

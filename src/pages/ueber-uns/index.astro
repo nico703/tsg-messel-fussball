@@ -1,271 +1,245 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { responsibleMembers } from "../../data/responsible";
 
-const highlights = [
-	{ title: "Aktiver Bereich", detail: "1. Mannschaft (A-Klasse) und 2. Mannschaft (C-Liga)" },
-	{ title: "Nachwuchsarbeit", detail: "Mehr als ein Dutzend Teams von G- bis A-Jugend" },
-	{ title: "Infrastruktur", detail: "2 Naturrasenplätze, Trainingsfläche & moderne Drei-Felder-Halle" },
+const abteilung = [
+  { role: "Abteilungsleitung Fußball", name: "Kai Olschewski", mail: "kaiolschewski@gmx.de" },
+  { role: "Sportlicher Leiter Aktiven", name: "Florian Karach", mail: "", phone: "+49 157 53696627" },
+  { role: "Jugendleitung", name: "Johannes Schmidt", mail: "johannes1983schmidt@gmail.com" },
+  { role: "AH-Organisation", name: "Peter Krauß", mail: "", phone: "+49 151 20730286" },
+];
+
+const ehrenamt = [
+  "Trainerinnen und Trainer von Jugend bis Herren",
+  "Betreuer:innen",
+  "Platz- und Materialverantwortliche",
+  "Helfer:innen bei Turnieren und Veranstaltungen",
 ];
 ---
 
-<BaseLayout title="Über uns – TSG Messel Fußball">
-	<div class="about">
-		<section class="about-hero">
-			<div class="about-hero__overlay">
-				<p class="eyebrow">TSG 1877 Messel Fußball</p>
-				<h1>Tradition, Ehrenamt und moderner Fußballgeist</h1>
-				<p>
-					Seit 1877 steht die TSG Messel für Fußball mit Herz. Wir verbinden Dorfkultur, Nachwuchsförderung
-					und ambitionierten Spielbetrieb – getragen von einem starken ehrenamtlichen Team.
-				</p>
-			</div>
-		</section>
+<BaseLayout
+  title="Über uns – TSG Messel Fußball"
+  description="Die Fußballabteilung der TSG Messel – wer wir sind, wofür wir stehen und wie wir gemeinsam Fußball leben."
+>
+  <!-- HERO / EINLEITUNG -->
+  <section class="relative overflow-hidden border-b border-[color:var(--tsg-border)]">
+    <img
+      src="/images/hero-ueber-uns.jpg"
+      alt="TSG Messel Fußballgemeinschaft"
+      class="absolute inset-0 h-full w-full object-cover"
+      fetchpriority="high"
+      decoding="async"
+      width="1920"
+      height="1080"
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-[#0f172a]/80 via-[#0f172a]/78 to-[#0f172a]/90"></div>
+    <div class="relative mx-auto max-w-6xl px-4 py-10 md:py-14">
+      <p class="text-xs font-semibold uppercase tracking-[0.25em] text-[color:var(--tsg-accent)]">
+        Über uns
+      </p>
+      <h1 class="mt-3 text-3xl font-bold text-white md:text-4xl">
+        Fußball bei der TSG Messel – eine Gemeinschaft, die begeistert.
+      </h1>
+      <p class="mt-4 max-w-3xl text-sm text-[#93b0ff] md:text-base">
+        Die Fußballabteilung der TSG Messel verbindet Kinder, Jugendliche, Aktive, Alte Herren,
+        Trainer:innen, Eltern und Ehrenamtliche. Uns geht es nicht nur um Ergebnisse,
+        sondern um das, was Fußball im Verein ausmacht: Gemeinschaft, Begeisterung und Stolz.
+      </p>
+    </div>
+  </section>
 
-		<section class="about-content">
-			<div class="about-text">
-				<h2>Wer wir sind</h2>
-				<p>
-					In Messel leben knapp 4.000 Menschen – und doch bringen wir Woche für Woche den Platz zum
-					Beben. Unsere Fußballabteilung stützt das kulturelle Leben des Ortes, schafft Begegnungen
-					und bietet einen sportlichen Rahmen für alle Generationen. Ehrenamtliche Trainerinnen,
-					Begleiter und Organisatoren halten den Spiel- und Trainingsbetrieb mit viel Herzblut am
-					Laufen.
-				</p>
-				<p>
-					Mit Artikeln, Spielberichten und Fotos lassen wir unsere Community an diesem Vereinsleben
-					teilhaben. Ob neugieriger Gast oder eingefleischter Fan – hier bekommst du einen schnellen
-					Eindruck, wie lebendig Fußball in Messel ist.
-				</p>
-			</div>
-			<div class="about-text">
-				<h2>Sportliche Entwicklung</h2>
-				<p>
-					Unsere 1. Mannschaft ist aktuell in der A-Klasse Darmstadt unterwegs, die 2. Mannschaft hat
-					nach dem jüngsten Aufstieg einen festen Platz in der C-Liga. Dazu kommt eine aktive AH, die
-					den sportlichen Betrieb ebenso prägt wie das Vereinsleben.
-				</p>
-				<p>
-					Wir investieren gezielt in Infrastruktur: zwei Naturrasenplätze, eine separate Trainingswiese
-					und eine top ausgestattete Drei-Felder-Halle direkt neben dem Sportgelände. Dadurch können
-					wir ganzjährig hochwertige Trainingseinheiten anbieten – von den Bambini bis zur AH.
-				</p>
-			</div>
-		</section>
+  <!-- WER WIR SIND / PHILOSOPHIE -->
+  <section class="mx-auto max-w-6xl px-4 py-12 md:py-16">
+    <div class="grid gap-10 md:grid-cols-2 md:items-start">
+      <div>
+        <h2 class="text-2xl font-bold text-slate-900 md:text-3xl">
+          Wer wir sind.
+        </h2>
+        <p class="mt-4 text-sm text-slate-700 md:text-base">
+          Die TSG Messel ist ein Verein mit langer Tradition und starkem Zusammenhalt.
+          In der Fußballabteilung treffen unterschiedliche Generationen aufeinander –
+          von den Bambini über die Jugend bis hin zu den Aktiven und Alten Herren.
+        </p>
+        <p class="mt-3 text-sm text-slate-700 md:text-base">
+          Viele Spieler:innen beginnen in der Jugend und bleiben der TSG über Jahre hinweg treu.
+          Das macht unseren Verein aus: Man kennt sich, man unterstützt sich
+          und man entwickelt sich gemeinsam weiter.
+        </p>
+      </div>
 
-		<section class="about-feature">
-			<div class="about-text">
-				<h2>Jugendarbeit & Werte</h2>
-				<p>
-					Unsere Nachwuchsarbeit wurde in den letzten Jahren komplett neu aufgebaut. Heute stellen wir
-					wieder zahlreiche Jugendteams, die von zertifizierten Trainerinnen und Trainern betreut
-					werden – vom DFB-Kinder- und Jugendzertifikat bis zur B-Lizenz.
-				</p>
-				<p>
-					Auf und neben dem Platz vermitteln wir Werte wie Fair Play, Empathie, Teamfähigkeit,
-					Pflichtbewusstsein und Zusammenhalt. So entwickeln wir nicht nur Spielerinnen und Spieler,
-					sondern echte Teamplayer für das Leben.
-				</p>
-			</div>
-		</section>
+      <div class="rounded-2xl border border-[color:var(--tsg-border)] bg-[color:var(--tsg-surface)]/95 p-5 text-sm text-slate-800 shadow-[0_16px_34px_rgba(30,64,175,0.12)]">
+        <h3 class="text-base font-semibold text-slate-900">
+          Unsere Fußball-Philosophie.
+        </h3>
+        <ul class="mt-3 space-y-2">
+          <li class="text-slate-700">• Kinder und Jugendliche sollen Spaß am Fußball haben und sich wohlfühlen.</li>
+          <li class="text-slate-700">• Leistung und Ergebnis sind wichtig – aber nicht wichtiger als der Mensch.</li>
+          <li class="text-slate-700">• Wir stehen für Fairness, Respekt und einen verantwortungsvollen Umgang miteinander.</li>
+          <li class="text-slate-700">• Ehrenamtliche Arbeit wird wertgeschätzt – ohne sie gäbe es keinen Spielbetrieb.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-		<section class="about-map">
-			<h2>Unser Zuhause</h2>
-			<p>Sportanlage TSG Messel · Am Sport 11, 64409 Messel</p>
-			<div class="about-map__embed">
-				<iframe
-					src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2536.4786943961684!2d8.736276277063663!3d49.93291737148582!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bd8d5cf6e3436d%3A0xc62e8ba74aeaed1f!2sAm%20Sport%2011%2C%2064409%20Messel!5e0!3m2!1sde!2sde!4v1733097400000!5m2!1sde!2sde"
-					loading="lazy"
-					referrerpolicy="no-referrer-when-downgrade"
-				></iframe>
-			</div>
-		</section>
+  <!-- UNSERE WERTE -->
+  <section class="border-y border-[color:var(--tsg-border)] bg-gradient-to-b from-[color:var(--tsg-surface)]/90 via-[color:var(--tsg-surface)] to-[color:var(--tsg-surface-muted)]">
+    <div class="mx-auto max-w-6xl px-4 py-12 md:py-16">
+      <h2 class="text-2xl font-bold text-slate-900 md:text-3xl">
+        Unsere Werte im Fußball.
+      </h2>
+      <p class="mt-3 max-w-3xl text-sm text-[#93b0ff] md:text-base">
+        „Gemeinschaft, Begeisterung, Stolz“ – diese drei Begriffe beschreiben,
+        was uns antreibt und was man auf und neben dem Platz spüren soll.
+      </p>
 
-		<section class="about-responsible">
-			<h2>Ansprechpartner</h2>
-			<p>Vorstand, Abteilungsleitung Fußball und Jugendleitung auf einen Blick.</p>
-			<div class="responsible-grid">
-				{responsibleMembers.map((member) => (
-					<article class="responsible-card">
-						<div class="responsible-card__image">
-							<img src={member.image} alt={member.name} loading="lazy" />
-						</div>
-						<div class="responsible-card__body">
-							<p class="responsible-card__role">{member.role}</p>
-							<h3>{member.name}</h3>
-							{member.mail && (
-								<a href={`mailto:${member.mail}`} class="responsible-card__contact">
-									{member.mail}
-								</a>
-							)}
-							{member.phone && (
-								<a href={`tel:${member.phone}`} class="responsible-card__contact">
-									{member.phone}
-								</a>
-							)}
-						</div>
-					</article>
-				))}
-			</div>
-		</section>
-	</div>
+      <div class="mt-8 grid gap-6 md:grid-cols-3">
+        <article class="rounded-2xl border border-[color:var(--tsg-border)] bg-[color:var(--tsg-surface)]/95 p-4 text-sm text-slate-800 shadow-[0_16px_30px_rgba(30,64,175,0.1)]">
+          <h3 class="text-sm font-semibold text-slate-900 md:text-base">
+            Gemeinschaft
+          </h3>
+          <p class="mt-2 text-[#93b0ff]">
+            Spieler:innen, Trainer:innen, Eltern, Fans und Ehrenamtliche
+            – bei uns hält man zusammen. Wir verstehen uns als TSG-Familie.
+          </p>
+        </article>
+
+        <article class="rounded-2xl border border-[color:var(--tsg-border)] bg-[color:var(--tsg-surface)]/95 p-4 text-sm text-slate-800 shadow-[0_16px_30px_rgba(30,64,175,0.1)]">
+          <h3 class="text-sm font-semibold text-slate-900 md:text-base">
+            Begeisterung
+          </h3>
+          <p class="mt-2 text-[#93b0ff]">
+            Fußball soll Spaß machen. Im Training, im Spiel und bei allem,
+            was wir als Abteilung organisieren.
+          </p>
+        </article>
+
+        <article class="rounded-2xl border border-[color:var(--tsg-border)] bg-[color:var(--tsg-surface)]/95 p-4 text-sm text-slate-800 shadow-[0_16px_30px_rgba(30,64,175,0.1)]">
+          <h3 class="text-sm font-semibold text-slate-900 md:text-base">
+            Stolz
+          </h3>
+          <p class="mt-2 text-[#93b0ff]">
+            Wir sind stolz auf unsere Jugend, unsere Aktiven und alle,
+            die sich für die TSG einbringen – auf und neben dem Platz.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABTEILUNG / STRUKTUR -->
+  <section class="mx-auto max-w-6xl px-4 py-12 md:py-16">
+    <div class="grid gap-10 md:grid-cols-[1.3fr,1fr] md:items-start">
+      <div>
+        <h2 class="text-2xl font-bold text-slate-900 md:text-3xl">
+          Aufbau der Abteilung.
+        </h2>
+        <p class="mt-4 text-sm text-slate-700 md:text-base">
+          Die Fußballabteilung gliedert sich in Jugend, Herren und Alte Herren.
+          Organisiert wird der Bereich von der Abteilungsleitung gemeinsam mit
+          Trainerteams und weiteren Ehrenamtlichen.
+        </p>
+        <p class="mt-3 text-sm text-slate-700 md:text-base">
+          Viele Aufgaben werden im Hintergrund erledigt: Organisation von Spielbetrieb
+          und Training, Platzpflege, Trikots, Turniere, Veranstaltungen und vieles mehr.
+          Ohne dieses Engagement wäre der Vereinsfußball nicht möglich.
+        </p>
+      </div>
+
+      <div class="rounded-2xl border border-[color:var(--tsg-border)] bg-[color:var(--tsg-surface)]/95 p-5 text-sm text-slate-800 shadow-[0_16px_34px_rgba(30,64,175,0.12)]">
+        <h3 class="text-base font-semibold text-slate-900">
+          Abteilungsleitung &amp; Ansprechpartner.
+        </h3>
+        <div class="mt-4 space-y-3">
+          {abteilung.map((person) => (
+            <div class="border-b border-slate-200 pb-3 last:border-b-0 last:pb-0">
+              <p class="text-xs font-semibold uppercase tracking-[0.16em] text-[color:var(--tsg-accent)]">
+                {person.role}
+              </p>
+              <p class="text-sm text-slate-900">
+                {person.name}
+              </p>
+              {person.mail && (
+                <p class="text-xs text-slate-500">
+                  <a href={`mailto:${person.mail}`} class="hover:underline">
+                    {person.mail}
+                  </a>
+                </p>
+              )}
+              {person.phone && (
+                <p class="text-xs text-slate-500">
+                  <a href={`tel:${person.phone}`} class="hover:underline">
+                    {person.phone}
+                  </a>
+                </p>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLATZ / ANLAGE -->
+  <section class="border-y border-[color:var(--tsg-border)] bg-gradient-to-b from-[color:var(--tsg-surface)] via-[color:var(--tsg-surface)] to-[color:var(--tsg-surface-muted)]">
+    <div class="mx-auto max-w-6xl px-4 py-12 md:py-16">
+      <div class="grid gap-10 md:grid-cols-2 md:items-center">
+        <div>
+          <h2 class="text-2xl font-bold text-slate-900 md:text-3xl">
+            Unsere Anlage.
+          </h2>
+          <p class="mt-4 text-sm text-slate-700 md:text-base">
+            Der Sportplatz der TSG Messel ist mehr als nur eine Spielfläche –
+            er ist Treffpunkt für Spieler:innen, Familien und Fans.
+          </p>
+          <p class="mt-3 text-sm text-slate-700 md:text-base">
+            Hier werden Trainings, Heimspiele, Turniere und Feste ausgerichtet.
+            Gerade für Kinder und Jugendliche ist der Platz ein wichtiger Ort:
+            zum Kicken, Treffen und gemeinsam Zeit verbringen.
+          </p>
+          <p class="mt-3 text-xs text-slate-500">
+            <a
+              class="font-semibold text-[#1e3a8a] hover:text-[#254da8]"
+              href="https://www.google.com/maps/place/Am+Sportplatz+11,+64409+Messel"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+            </a>
+          </p>
+        </div>
+
+        <div class="relative overflow-hidden rounded-2xl border border-[color:var(--tsg-border)] bg-[color:var(--tsg-surface)]/95 shadow-[0_16px_34px_rgba(30,64,175,0.12)]">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2536.4786943961684!2d8.736276277063663!3d49.93291737148582!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bd8d5cf6e3436d%3A0xc62e8ba74aeaed1f!2sAm%20Sportplatz%2011%2C%2064409%20Messel!5e0!3m2!1sde!2sde!4v1733097400000!5m2!1sde!2sde"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            class="h-64 w-full border-0 md:h-80"
+          ></iframe>
+          <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-900/35 via-transparent to-transparent" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EHRENAMT / DANKE -->
+  <section class="mx-auto max-w-6xl px-4 py-12 md:py-16">
+    <div class="rounded-2xl border border-[color:var(--tsg-border)] bg-[color:var(--tsg-surface)]/95 p-6 shadow-[0_18px_36px_rgba(30,64,175,0.12)] md:p-8">
+      <h2 class="text-2xl font-bold text-slate-900 md:text-3xl">
+        Ohne Ehrenamt kein Fußball.
+      </h2>
+      <p class="mt-4 text-sm text-slate-700 md:text-base">
+        Hinter jedem Training und jedem Spiel stehen Menschen, die ihre Zeit und
+        Energie einbringen – oftmals im Hintergrund und ohne große Bühne.
+      </p>
+      <p class="mt-3 text-sm text-slate-700 md:text-base">
+        Ihnen gilt ein besonderer Dank. Ihr Engagement sorgt dafür, dass Kinder,
+        Jugendliche und Erwachsene in Messel regelmäßig Fußball spielen können.
+      </p>
+
+      <ul class="mt-5 grid gap-2 text-sm text-slate-800 md:grid-cols-2">
+        {ehrenamt.map((item) => (
+          <li>• {item}</li>
+        ))}
+      </ul>
+    </div>
+  </section>
 </BaseLayout>
-
-<style>
-.about {
-	display: flex;
-	flex-direction: column;
-	gap: 2.5rem;
-}
-
-.about-hero {
-	position: relative;
-	min-height: 45vh;
-	background-image: url("/images/hero-ueber-uns.jpg");
-	background-size: cover;
-	background-position: center;
-}
-
-.about-hero__overlay {
-	position: relative;
-	z-index: 1;
-	padding: 4rem 1.5rem;
-	max-width: 860px;
-	color: #fff;
-}
-
-.about-hero::before {
-	content: "";
-	position: absolute;
-	inset: 0;
-	background: linear-gradient(135deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.2));
-}
-
-.eyebrow {
-	text-transform: uppercase;
-	letter-spacing: 0.18em;
-	font-size: 0.8rem;
-	color: rgba(255, 255, 255, 0.7);
-	margin-bottom: 0.75rem;
-}
-
-.about-content,
-.about-feature {
-	max-width: 1080px;
-	margin: 0 auto;
-	padding: 0 1.5rem;
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-	gap: 1.8rem;
-}
-
-.about-text {
-	background: rgba(255, 255, 255, 0.9);
-	border-radius: 24px;
-	padding: 1.5rem;
-	box-shadow: 0 20px 34px rgba(15, 23, 42, 0.08);
-}
-
-.about-text h2 {
-	margin-top: 0;
-}
-
-.about-feature .about-text {
-	min-height: 100%;
-}
-
-.highlight-grid {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-	gap: 1rem;
-}
-
-.highlight-card {
-	border-radius: 20px;
-	padding: 1.2rem;
-	background: rgba(15, 23, 42, 0.9);
-	color: #fff;
-	box-shadow: 0 12px 28px rgba(15, 23, 42, 0.4);
-}
-
-.highlight-card h3 {
-	margin-top: 0;
-}
-
-.about-map,
-.about-responsible {
-	max-width: 1080px;
-	margin: 0 auto;
-	padding: 0 1.5rem 2rem;
-}
-
-.about-map__embed {
-	margin-top: 1rem;
-	border-radius: 24px;
-	overflow: hidden;
-	box-shadow: 0 22px 40px rgba(15, 23, 42, 0.15);
-}
-
-.about-map iframe {
-	width: 100%;
-	min-height: 360px;
-	border: 0;
-}
-
-.responsible-grid {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-	gap: 1.4rem;
-	margin-top: 1.4rem;
-}
-
-.responsible-card {
-	display: flex;
-	gap: 1rem;
-	padding: 1.1rem;
-	border-radius: 20px;
-	background: rgba(255, 255, 255, 0.95);
-	box-shadow: 0 18px 34px rgba(15, 23, 42, 0.08);
-}
-
-.responsible-card__image {
-	width: 84px;
-	height: 84px;
-	border-radius: 18px;
-	overflow: hidden;
-	background: rgba(15, 23, 42, 0.05);
-	flex-shrink: 0;
-}
-
-.responsible-card__image img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	display: block;
-}
-
-.responsible-card__role {
-	text-transform: uppercase;
-	letter-spacing: 0.12em;
-	font-size: 0.7rem;
-	margin: 0;
-	color: rgba(15, 23, 42, 0.6);
-}
-
-.responsible-card__body h3 {
-	margin: 0.25rem 0;
-}
-
-.responsible-card__contact {
-	display: block;
-	color: rgba(15, 23, 42, 0.85);
-	text-decoration: none;
-	font-size: 0.9rem;
-}
-
-@media (max-width: 720px) {
-	.about-hero {
-		min-height: 60vh;
-	}
-}
-</style>

@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:global(:root) {
+  color-scheme: light;
+}
+
+/* Buttons */
+:global(.btn-solid) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1.4rem;
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid rgba(30, 58, 138, 0.4);
+  background: #1e3a8a;
+  color: #fff;
+  box-shadow: 0 10px 20px rgba(30, 58, 138, 0.18);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+:global(.btn-solid:hover) {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 26px rgba(30, 58, 138, 0.2);
+  background: linear-gradient(135deg, rgba(30, 58, 138, 0.9), rgba(30, 58, 138, 0.78));
+}
+
+:global(.btn-ghost) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1.4rem;
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid rgba(30, 58, 138, 0.4);
+  color: var(--tsg-primary, #1e3a8a);
+  background: #e9f2ff;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+:global(.btn-ghost:hover) {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(30, 58, 138, 0.12);
+  background: #d6e8ff;
+}

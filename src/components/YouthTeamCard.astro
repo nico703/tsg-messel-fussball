@@ -1,6 +1,11 @@
 ---
 import type { JugendTeam } from "../data/jugend";
 const { team } = Astro.props as { team: JugendTeam };
+const whatsappNumber = "4917620182975";
+const whatsappText = encodeURIComponent(
+	`Hallo! Ich interessiere mich für ein Schnuppertraining bei der ${team.name} der TSG Messel.`
+);
+const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappText}`;
 ---
 
 <article class="yt-card">
@@ -32,11 +37,8 @@ const { team } = Astro.props as { team: JugendTeam };
   </div>
 
   <footer class="yt-card__footer">
-    <a
-      class="yt-card__cta"
-      href={`mailto:${team.kontaktMail}?subject=Schnuppertraining bei der ${team.name}`}
-    >
-      Schnuppertraining anfragen
+    <a class="yt-card__cta" href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+      Schnuppertraining via WhatsApp
     </a>
   </footer>
 </article>

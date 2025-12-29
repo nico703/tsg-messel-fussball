@@ -3,118 +3,257 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { herrenTeams } from "../../data/herren";
 import PlayerCard from "../../components/PlayerCard.astro";
 import CoachCard from "../../components/CoachCard.astro";
+
+const activeHero = "/images/hero-aktive-home.jpg"; // bitte ein Foto hinterlegen
 ---
 
 <BaseLayout title="Herren – TSG Messel Fußball">
-  <div class="page">
-    <h1>Herrenmannschaften</h1>
-    <p>
-      Unsere 1. und 2. Mannschaft repräsentieren die TSG Messel im aktiven Spielbetrieb.
-      Hier findest du Kader, Trainerteam und Links zu Ergebnissen und Tabellen.
-    </p>
+	<div class="page">
+		<section class="hero" style={`background-image: linear-gradient(135deg, rgba(30,58,138,0.3), rgba(14,165,233,0.15)), url(${activeHero});`}>
+			<div class="hero__overlay">
+				<p class="eyebrow eyebrow--blue">Aktive Mannschaften</p>
+				<h1>Unsere Aktiven sind Vorbilder.</h1>
+				<p>
+					Die 1. und 2. Mannschaft stehen für Einsatz, Zusammenhalt und den Weg, den viele in der Jugend begonnen haben.
+					Sie zeigen, wohin es gehen kann – auf und neben dem Platz.
+				</p>
+			</div>
+		</section>
 
-    {herrenTeams.map((team) => (
-      <section class="team-section">
-        <header class="team-section__header">
-          <h2>{team.name}</h2>
-          {team.kontakt && (
-            <div class="team-section__meta">
-              <span>
-                <strong>Kontakt:</strong>{" "}
-                <a href={`mailto:${team.kontakt}`}>{team.kontakt}</a>
-              </span>
-            </div>
-          )}
-        </header>
+		<section id="teams" class="teams">
+			<h2>Unsere Teams</h2>
+			<p class="teams__lead">Kader, Trainer und aktuelle Links zu Ergebnissen &amp; Tabellen. Wähle dein Team:</p>
 
-        {team.trainerTeam && (
-          <div class="team-section__coaches">
-            {team.trainerTeam.map((coach) => (
-              <CoachCard trainer={coach} />
-            ))}
-          </div>
-        )}
+			<div class="team-grid">
+				{herrenTeams.map((team) => (
+					// Bestimme den Bildordner je Team
+					<article class="team-card">
+						{(() => {
+							const folder = team.name.startsWith("1") ? "1-mannschaft" : "2-mannschaft";
+							return (
+								<>
+						<header class="team-card__header">
+							<div>
+								<p class="eyebrow eyebrow--light">Herren</p>
+								<h3>{team.name}</h3>
+								{team.kontakt && (
+									<p class="team-card__contact">
+										Kontakt: <a href={`mailto:${team.kontakt}`}>{team.kontakt}</a>
+									</p>
+								)}
+							</div>
+							{team.fussballDeUrl && (
+								<a class="link" href={team.fussballDeUrl} target="_blank" rel="noopener noreferrer">
+									Ergebnisse &amp; Tabelle
+								</a>
+							)}
+						</header>
 
-        <div class="team-section__content">
-          <div class="team-section__players">
-            {team.spieler.map((s) => (
-              <PlayerCard spieler={s} />
-            ))}
-          </div>
+						{team.trainerTeam && (
+							<div class="team-card__coaches">
+								{team.trainerTeam.map((coach) => (
+									<CoachCard trainer={coach} />
+								))}
+							</div>
+						)}
 
-          <aside class="team-section__sidebar">
-            {team.fussballDeUrl && (
-              <>
-                <h3>Ergebnisse &amp; Tabelle</h3>
-                <p>
-                  Alle aktuellen Spiele und Tabellen findest du auf fussball.de:
-                </p>
-                <a href={team.fussballDeUrl} target="_blank" rel="noopener noreferrer">
-                  Zu fussball.de
-                </a>
-              </>
-            )}
-          </aside>
-        </div>
-      </section>
-    ))}
-  </div>
+						{team.spieler.length > 0 ? (
+							<div class="team-card__players">
+								{team.spieler.map((s) => (
+									<PlayerCard spieler={s} imageBase={`/images/players/${folder}`} />
+								))}
+							</div>
+						) : (
+							<p class="team-card__placeholder">Kader-Update folgt in Kürze.</p>
+						)}
+								</>
+							);
+						})()}
+					</article>
+				))}
+			</div>
+		</section>
+
+		<section class="connection">
+			<div>
+				<p class="eyebrow eyebrow--light">Gemeinsamer Weg</p>
+				<h2>Von der Jugend bis zu den Aktiven</h2>
+				<p>
+					Viele Spieler der ersten und zweiten Mannschaft haben in unserer Jugend angefangen. Wir sind überzeugt:
+					Starke Vorbilder motivieren den Nachwuchs – und der Nachwuchs gibt Energie an die Aktiven zurück.
+				</p>
+			</div>
+			<div class="connection__cta">
+				<a
+					href="/jugend"
+					class="inline-flex items-center justify-center rounded-full bg-[#1e3a8a] px-6 py-2.5 text-sm font-semibold text-white shadow-md shadow-[#1e3a8a]/30 transition hover:-translate-y-[1px] hover:bg-[#254da8]"
+				>
+					Zur Jugend
+				</a>
+				<a
+					href="/ah"
+					class="inline-flex items-center justify-center rounded-full bg-[#1e3a8a] px-6 py-2.5 text-sm font-semibold text-white shadow-md shadow-[#1e3a8a]/30 transition hover:-translate-y-[1px] hover:bg-[#254da8]"
+				>
+					Zu den AH
+				</a>
+			</div>
+		</section>
+	</div>
 </BaseLayout>
 
 <style>
 .page {
-  max-width: 1080px;
-  margin: 0 auto;
-  padding: 2.5rem 1.5rem;
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 2.5rem 1.5rem 3rem;
+	display: flex;
+	flex-direction: column;
+	gap: 2.5rem;
 }
 
-.team-section {
-  margin-top: 2.2rem;
-  border-top: 1px solid rgba(37,99,235,0.15);
-  padding-top: 1.5rem;
+.hero {
+	position: relative;
+	overflow: hidden;
+	border-radius: 24px;
+	min-height: 280px;
+	background: #0f172a;
+	box-shadow: 0 18px 36px rgba(30, 64, 175, 0.18);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
 }
 
-.team-section__header {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
+.hero__overlay {
+	position: relative;
+	z-index: 1;
+	padding: 2.5rem;
+	background: linear-gradient(135deg, rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.35));
+	color: #fff;
 }
 
-.team-section__meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.7rem;
-  font-size: 0.9rem;
+.hero h1 {
+	margin: 0.4rem 0;
+	font-size: clamp(1.8rem, 3vw, 2.4rem);
+	line-height: 1.2;
 }
 
-.team-section__content {
-  margin-top: 1rem;
-  display: grid;
-  grid-template-columns: minmax(0, 2.5fr) minmax(0, 1fr);
-  gap: 1.4rem;
+.hero p {
+	margin: 0.4rem 0 0;
+	max-width: 700px;
 }
 
-.team-section__coaches {
-  margin-top: 1rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
+.hero__actions {
+	margin-top: 1rem;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.7rem;
 }
 
-.team-section__players {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.8rem;
+.eyebrow {
+	text-transform: uppercase;
+	letter-spacing: 0.18em;
+	font-size: 0.75rem;
+	color: rgba(255, 255, 255, 0.8);
+	margin: 0;
 }
 
-.team-section__sidebar {
-  font-size: 0.9rem;
-  align-self: flex-start;
+.eyebrow--light,
+.eyebrow--blue {
+	color: var(--tsg-accent);
 }
 
-@media (max-width: 800px) {
-  .team-section__content {
-    grid-template-columns: 1fr;
-  }
+.teams h2 {
+	margin: 0;
+	font-size: 1.6rem;
+}
+
+.teams__lead {
+	margin: 0.5rem 0 1.2rem;
+	color: rgba(15, 23, 42, 0.75);
+}
+
+.team-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+	gap: 1rem;
+}
+
+.team-card {
+	padding: 1.2rem;
+	border-radius: 18px;
+	border: 1px solid rgba(15, 23, 42, 0.08);
+	background: rgba(255, 255, 255, 0.95);
+	box-shadow: 0 18px 30px rgba(30, 64, 175, 0.12);
+	display: flex;
+	flex-direction: column;
+	gap: 0.8rem;
+}
+
+.team-card__header {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	gap: 0.8rem;
+}
+
+.team-card__header h3 {
+	margin: 0.2rem 0 0;
+}
+
+.team-card__contact {
+	margin: 0.2rem 0 0;
+	color: rgba(15, 23, 42, 0.7);
+	font-size: 0.9rem;
+}
+
+.team-card__coaches {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.8rem;
+}
+
+.team-card__players {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+	gap: 0.6rem;
+}
+
+.team-card__placeholder {
+	margin: 0;
+	color: rgba(15, 23, 42, 0.7);
+}
+
+.connection {
+	border-radius: 20px;
+	padding: 1.4rem 1.5rem;
+	background: linear-gradient(135deg, rgba(30, 58, 138, 0.12), rgba(14, 165, 233, 0.12));
+	border: 1px solid rgba(30, 58, 138, 0.15);
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+	gap: 1rem;
+	align-items: center;
+	box-shadow: 0 12px 26px rgba(30, 64, 175, 0.12);
+}
+
+.connection h2 {
+	margin: 0.2rem 0 0.6rem;
+}
+
+.connection__cta {
+	display: flex;
+	gap: 0.7rem;
+	flex-wrap: wrap;
+}
+
+.link {
+	color: #1e3a8a;
+	text-decoration: none;
+	font-weight: 600;
+}
+
+@media (max-width: 768px) {
+	.hero__overlay {
+		padding: 2rem 1.5rem;
+	}
 }
 </style>

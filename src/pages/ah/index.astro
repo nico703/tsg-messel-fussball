@@ -1,135 +1,151 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { ahInfo } from "../../data/ah";
 
-const highlights = [
-	{
-		title: "Training & Spielpraxis",
-		description: `${ahInfo.trainingszeit} · ${ahInfo.ort}`,
-	},
-	{
-		title: "Gemeinschaft",
-		description: "Regelmäßiger Austausch nach dem Training sowie gemeinsame Aktionen.",
-	},
-	{
-		title: "Mitmachen",
-		description: "Einfach melden, vorbeischauen und mitkicksen – unabhängig vom Fitness-Level.",
-	},
-];
+const contactMail = "ah@tsg-messel.de"; // anpassen, falls nötig
 ---
 
-<BaseLayout title="Alte Herren – TSG Messel Fußball">
-	<div class="page ah-page">
-		<header class="ah-hero">
-			<p class="eyebrow">Tradition & Gemeinschaft</p>
-			<h1>Alte Herren der TSG Messel</h1>
-			<p>{ahInfo.beschreibung}</p>
-			<div class="ah-cta">
-				<a class="btn" href={`mailto:${ahInfo.kontakt}?subject=Interesse AH TSG Messel`}>
-					Kontakt aufnehmen
-				</a>
-			</div>
-		</header>
+<BaseLayout
+  title="Alte Herren – TSG Messel Fußball"
+  description="Die Alten Herren der TSG Messel – Fußball, Gemeinschaft und Zeit mit Freunden."
+>
+  <!-- HERO / INTRO -->
+  <section class="relative overflow-hidden border-b border-[color:var(--tsg-border)]">
+    <img
+      src="/images/header-ah-home.jpg"
+      alt="Alte Herren der TSG Messel"
+      class="absolute inset-0 h-full w-full object-cover object-[center_30%]"
+      fetchpriority="high"
+      decoding="async"
+      width="1920"
+      height="1080"
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-[#0f172a]/80 via-[#0f172a]/78 to-[#0f172a]/90"></div>
 
-		<section class="ah-details">
-			<div class="ah-details__card">
-				<h2>Trainingszeit</h2>
-				<p>{ahInfo.trainingszeit}</p>
-				<p>{ahInfo.ort}</p>
-			</div>
-			<div class="ah-details__card">
-				<h2>Abteilungsleiter AH</h2>
-				<p>{ahInfo.ansprechpartner}</p>
-				<a href={`mailto:${ahInfo.kontakt}`}>{ahInfo.kontakt}</a>
-			</div>
-			<div class="ah-details__card">
-				<h2>Koordination AH</h2>
-				<p>{ahInfo.ansprechpartner}</p>
-				<a href={`mailto:${ahInfo.kontakt}`}>{ahInfo.kontakt}</a>
-			</div>
-		</section>
+    <div class="relative mx-auto flex max-w-6xl flex-col gap-4 px-4 py-10 md:py-14">
+      <p class="text-xs font-semibold uppercase tracking-[0.25em] text-[color:var(--tsg-accent)]">
+        Alte Herren
+      </p>
+      <h1 class="text-3xl font-bold text-white md:text-4xl">
+        Fußball, Gemeinschaft &amp; ein gutes Miteinander.
+      </h1>
+      <p class="max-w-3xl text-sm text-[color:var(--tsg-accent)] md:text-base">
+        Bei den Alten Herren der TSG Messel steht die Gemeinschaft im Vordergrund.
+        Fußball spielen, aktiv bleiben und dabei Zeit mit Freunden verbringen –
+        ganz ohne Tabellen- und Ergebnisdruck.
+      </p>
+      <p class="max-w-3xl text-sm text-[color:var(--tsg-accent)] md:text-base">
+        Ehemalige Aktive, langjährige Mitglieder und neue Gesichter – hier treffen sich
+        Generationen, die eines verbindet: die Liebe zum Fußball und zur TSG.
+      </p>
+    </div>
+  </section>
 
-	</div>
+  <!-- CHARAKTER / WAS UNS WICHTIG IST -->
+  <section class="mx-auto max-w-6xl px-4 py-12 md:py-16">
+    <div class="grid gap-10 md:grid-cols-2 md:items-start">
+      <div>
+        <h2 class="text-2xl font-bold text-slate-900 md:text-3xl">
+          Mehr als nur „Alt-Herren-Kick“.
+        </h2>
+        <p class="mt-4 text-sm text-slate-700 md:text-base">
+          Natürlich gehört der Spaß am Spiel dazu – aber genauso wichtig sind das
+          Miteinander, die Gespräche nach dem Training und gemeinsame Aktionen
+          außerhalb des Platzes.
+        </p>
+        <ul class="mt-5 space-y-2 text-sm text-slate-800 md:text-base">
+          <li>• Regelmäßiges Training und Freundschaftsspiele</li>
+          <li>• Gemeinsame Ausflüge, Feiern und Vereinsaktivitäten</li>
+          <li>• Unterstützung bei Veranstaltungen der TSG</li>
+          <li>• Ein offenes Umfeld für alle, die weiterkicken wollen</li>
+        </ul>
+      </div>
+
+      <div class="space-y-4 rounded-2xl border border-[color:var(--tsg-border)] bg-[color:var(--tsg-surface)]/95 p-5 text-sm text-slate-800 shadow-[0_16px_30px_rgba(30,64,175,0.1)]">
+        <h3 class="text-base font-semibold text-slate-900">
+          Für wen sind die Alten Herren?
+        </h3>
+        <p>
+          Angesprochen sind alle Spieler, die aus dem regulären Spielbetrieb
+          heraus sind oder einfach „etwas gemütlicher“ kicken möchten – ohne
+          ganz auf den Ball zu verzichten.
+        </p>
+        <p>
+          Ob ehemaliger Aktiver, Quereinsteiger oder langjähriger TSGler:
+          Entscheidend ist der Spaß am Fußball und die Lust auf eine gute Truppe.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRAINING / TREFFEN -->
+  <section class="border-y border-[color:var(--tsg-border)] bg-gradient-to-b from-[color:var(--tsg-surface)] via-[color:var(--tsg-surface)] to-[color:var(--tsg-surface-muted)]">
+    <div class="mx-auto max-w-6xl px-4 py-12 md:py-16">
+      <h2 class="text-2xl font-bold text-slate-900 md:text-3xl">
+        Training &amp; Treffpunkt.
+      </h2>
+      <p class="mt-3 text-sm text-slate-700 md:text-base">
+        Die genauen Trainingszeiten können je nach Jahreszeit und Platzsituation variieren.
+        Meistens gibt es einen festen Wochentag für das AH-Training und gelegentliche Spiele.
+      </p>
+
+      <div class="mt-6 grid gap-6 md:grid-cols-2">
+        <div class="rounded-2xl border border-[color:var(--tsg-border)] bg-[color:var(--tsg-surface)]/95 p-5 text-sm text-slate-800 shadow-[0_16px_30px_rgba(30,64,175,0.1)]">
+          <h3 class="text-base font-semibold text-slate-900">
+            Typischer Ablauf (Beispiel)
+          </h3>
+          <ul class="mt-3 space-y-2">
+            <li>• lockeres Warmmachen und ein paar Passübungen</li>
+            <li>• viel Spiel auf kleinem und großem Feld</li>
+            <li>• im Anschluss oft gemeinsamer Ausklang</li>
+          </ul>
+          <p class="mt-3 text-xs text-slate-500">
+            Hinweis: Genauere Infos zu aktuellen Zeiten und Treffpunkten
+            bitte direkt beim AH-Verantwortlichen erfragen.
+          </p>
+        </div>
+
+        <div class="rounded-2xl border border-[color:var(--tsg-border)] bg-[color:var(--tsg-surface)]/95 p-5 text-sm text-slate-800 shadow-[0_16px_30px_rgba(30,64,175,0.1)]">
+          <h3 class="text-base font-semibold text-slate-900">
+            Interesse, mitzuspielen?
+          </h3>
+          <p class="mt-2">
+            Am einfachsten: kurz melden und bei einem Training vorbeischauen.
+          </p>
+          <div class="mt-3 space-y-2">
+          <p class="text-sm text-slate-800">
+            E-Mail:
+            <a
+              href={`mailto:${contactMail}`}
+              class="ml-1 font-semibold text-[color:var(--tsg-primary)] hover:underline"
+            >
+              {contactMail}
+            </a>
+          </p>
+            <p class="text-sm text-slate-800">
+              Abteilungsleiter AH: <a class="text-[#1e3a8a] hover:underline" href="tel:+4915120730286">Peter Krauß</a>
+            </p>
+            <p class="text-sm text-slate-800">
+              Koordinator Spielbetrieb: <a class="text-[#1e3a8a] hover:underline" href="tel:+4917684521225">André Hieronymus</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STIMME AUS DER AH -->
+  <section class="mx-auto max-w-6xl px-4 py-12 md:py-16">
+    <div class="rounded-2xl border border-[color:var(--tsg-border)] bg-[color:var(--tsg-surface)]/95 p-6 text-sm text-slate-800 shadow-[0_16px_30px_rgba(30,64,175,0.1)] md:p-8">
+      <p class="text-xs font-semibold uppercase tracking-[0.25em] text-[color:var(--tsg-accent)]">
+        „Warum ich bei der TSG bin“
+      </p>
+      <p class="mt-4 text-sm italic text-slate-800 md:text-base">
+        „Hier treffe ich alte Weggefährten und neue Gesichter – alle mit derselben
+        Leidenschaft. Man bleibt in Bewegung, hat Spaß und bleibt mit der TSG verbunden.“
+      </p>
+      <p class="mt-3 text-xs text-slate-500">
+        – Eine Stimme aus den Alten Herren (Platzhalter, gerne durch echtes Zitat ersetzen)
+      </p>
+    </div>
+  </section>
 </BaseLayout>
-
-<style>
-.page {
-	max-width: 960px;
-	margin: 0 auto;
-	padding: 2.5rem 1.5rem 3rem;
-	display: flex;
-	flex-direction: column;
-	gap: 2rem;
-}
-
-.ah-hero {
-	background: linear-gradient(135deg, rgba(13, 71, 161, 0.08), rgba(25, 118, 210, 0.18));
-	border-radius: 24px;
-	padding: 2rem;
-	box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
-}
-
-.eyebrow {
-	text-transform: uppercase;
-	letter-spacing: 0.18em;
-	font-size: 0.8rem;
-	color: rgba(15, 23, 42, 0.6);
-	margin-bottom: 0.75rem;
-}
-
-.ah-cta {
-	margin-top: 1.2rem;
-}
-
-.btn {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	padding: 0.6rem 1.4rem;
-	border-radius: 999px;
-	text-decoration: none;
-	border: 1px solid rgba(15, 23, 42, 0.12);
-	font-weight: 600;
-	color: inherit;
-}
-
-.ah-details {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-	gap: 1rem;
-}
-
-.ah-details__card {
-	padding: 1.25rem;
-	border-radius: 18px;
-	background: #fff;
-	box-shadow: 0 14px 26px rgba(15, 23, 42, 0.05);
-}
-
-.ah-details__card h2 {
-	margin-top: 0;
-	font-size: 1.1rem;
-}
-
-.link {
-	text-decoration: none;
-	font-weight: 600;
-}
-
-.ah-highlights {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-	gap: 1rem;
-}
-
-.ah-highlights__item {
-	padding: 1.25rem;
-	border-radius: 18px;
-	border: 1px solid rgba(15, 23, 42, 0.08);
-	background: rgba(255, 255, 255, 0.85);
-}
-
-.ah-highlights__item h3 {
-	margin-top: 0;
-}
-</style>
