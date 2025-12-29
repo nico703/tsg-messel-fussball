@@ -310,7 +310,7 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
 }
 
 .site-nav__list {
-	display: flex;
+	display: none;
 }
 
 .site-nav a {
@@ -338,7 +338,7 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
 }
 
 .site-nav__toggle {
-	display: none;
+	display: inline-flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
@@ -381,6 +381,7 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
 	border: 1px solid rgba(37, 99, 235, 0.25);
 	color: var(--tsg-primary);
 	background: linear-gradient(135deg, rgba(226, 239, 255, 0.9), rgba(219, 244, 255, 0.9));
+	display: none;
 }
 
 .site-main {
@@ -455,15 +456,15 @@ body.menu-open .mobile-nav__backdrop {
 	pointer-events: auto;
 }
 
-@media (max-width: 900px) {
-	.site-nav__list,
-	.site-nav__shop,
-	.site-nav__cta {
-		display: none;
+@media (min-width: 901px) {
+	.site-nav__list {
+		display: flex;
 	}
-
-	.site-nav__toggle {
+	.site-nav__shop {
 		display: inline-flex;
+	}
+	.site-nav__toggle {
+		display: none;
 	}
 }
 
