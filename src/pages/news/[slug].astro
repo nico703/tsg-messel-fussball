@@ -1,0 +1,53 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection, getEntryBySlug } from "astro:content";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("news");
+  return entries.map((entry) => ({
+    params: { slug: entry.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+const entry = slug ? await getEntryBySlug("news", slug) : null;
+
+if (!entry) {
+  return Astro.redirect("/news", 302);
+}
+
+const { data } = entry;
+const { Content } = await entry.render();
+const title = `${data.title} | News`;
+const description = data.teaser ?? "Aktuelle Meldung der Fußballabteilung der TSG Messel.";
+---
+
+<BaseLayout title={title} description={description}>
+  <article class="mx-auto max-w-4xl px-4 py-12 md:py-16">
+    <header class="space-y-2">
+      <p class="text-xs font-semibold uppercase tracking-[0.25em] text-[color:var(--tsg-accent)]">
+        {data.category} · {data.date}
+      </p>
+      <h1 class="text-3xl font-bold text-slate-900 md:text-4xl">{data.title}</h1>
+      {data.image && (
+        <div class="mt-6 overflow-hidden rounded-2xl border border-[color:var(--tsg-border)]">
+          <img
+            src={data.image}
+            alt={data.title}
+            class="h-72 w-full object-cover md:h-96"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      )}
+    </header>
+
+    <div class="prose prose-slate mt-8 max-w-none prose-a:text-[color:var(--tsg-primary)] prose-strong:text-slate-900 prose-h2:text-slate-900 prose-h3:text-slate-900">
+      <Content />
+    </div>
+
+    <div class="mt-10">
+      <a href="/news" class="btn-ghost">Zurück zu allen News</a>
+    </div>
+  </article>
+</BaseLayout>

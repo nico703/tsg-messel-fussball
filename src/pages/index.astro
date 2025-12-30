@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import NewsList from "../components/NewsList.astro";
 
 const valueSlides = [
   {
@@ -183,42 +184,8 @@ const valueSlides = [
         </a>
       </div>
 
-      <div class="mt-10 grid gap-6 md:grid-cols-3">
-        <!-- News Card 1 -->
-        <article class="overflow-hidden rounded-2xl border border-[color:var(--tsg-border)] bg-[color:var(--tsg-surface)] shadow-[0_16px_30px_rgba(30,64,175,0.08)]">
-          <div class="p-4">
-            <h3 class="text-sm font-semibold text-slate-900">
-              Jugendturnier in Messel
-            </h3>
-            <p class="mt-2 text-sm text-slate-700">
-              Spannende Spiele, faire Duelle und viel Applaus – unsere Jugendteams haben alles gegeben.
-            </p>
-          </div>
-        </article>
-
-        <!-- News Card 2 -->
-        <article class="overflow-hidden rounded-2xl border border-[color:var(--tsg-border)] bg-[color:var(--tsg-surface)] shadow-[0_16px_30px_rgba(30,64,175,0.08)]">
-          <div class="p-4">
-            <h3 class="text-sm font-semibold text-slate-900">
-              Heimsieg der 1. Mannschaft
-            </h3>
-            <p class="mt-2 text-sm text-slate-700">
-              Starker Einsatz und tolle Stimmung am Platz – drei wichtige Punkte bleiben in Messel.
-            </p>
-          </div>
-        </article>
-
-        <!-- News Card 3 -->
-        <article class="overflow-hidden rounded-2xl border border-[color:var(--tsg-border)] bg-[color:var(--tsg-surface)] shadow-[0_16px_30px_rgba(30,64,175,0.08)]">
-          <div class="p-4">
-            <h3 class="text-sm font-semibold text-slate-900">
-              Sommerfest der Fußballabteilung
-            </h3>
-            <p class="mt-2 text-sm text-slate-700">
-              Ein Fest für die ganze TSG-Familie – mit Musik, Grill und vielen lachenden Gesichtern.
-            </p>
-          </div>
-        </article>
+      <div class="mt-10">
+        <NewsList limit={3} />
       </div>
     </div>
   </section>
