@@ -82,7 +82,6 @@ export const herrenTeams: Mannschaft[] = [
 			{ name: "Sebastian Schied", position: "", image: "/images/players/2-mannschaft/basti.jpg" },
 			{ name: "Iven Schroeder", position: "", image: "/images/players/2-mannschaft/iven.jpg" },
 			{ name: "Jonas Kiefner", position: "", image: "/images/players/2-mannschaft/jonas.jpg" },
-			{ name: "Kevin Jung", position: "", image: "/images/players/2-mannschaft/kevin.jpg" },
 			{ name: "Mohamed Ibrahim", position: "", image: "/images/players/2-mannschaft/mohamed.jpg" },
 			{ name: "Philipp Schüler", position: "", image: "/images/players/2-mannschaft/philipp.jpg" },
 			{ name: "Emilio Fernandez", position: "", image: "/images/players/2-mannschaft/emilio.jpg" },
