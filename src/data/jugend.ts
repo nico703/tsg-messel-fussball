@@ -16,7 +16,7 @@ export const jugendTeams: JugendTeam[] = [
 	{
 		name: "Minis",
 		jahrgaenge: "Jahrgang bis 2021",
-		trainer: "Karl Heinz Fröhner",
+		trainer: "Karl Heinz",
 		kontaktMail: "jugend@tsg-messel.de",
 		slots: [
 			{
@@ -55,7 +55,7 @@ export const jugendTeams: JugendTeam[] = [
 	{
 		name: "G3-Jugend",
 		jahrgaenge: "Jahrgang 2021",
-		trainer: "Dominik Wolf",
+		trainer: "Dominik",
 		kontaktMail: "jugend@tsg-messel.de",
 		slots: [
 			{
