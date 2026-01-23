@@ -69,10 +69,9 @@ export const herrenTeams: Mannschaft[] = [
 				image: "/images/trainers/philipp-gerbig.jpg",
 			},
 			{
-				name: "Marcel Schott",
+				name: "Tom Dunsch",
 				role: "Co-Trainer",
-				phone: "+49 1575 2443331",
-				image: "/images/trainers/marcel-schott.jpg",
+				image: "/images/players/2-mannschaft/tom.jpg",
 			},
 		],
 		kontakt: undefined,
@@ -93,7 +92,6 @@ export const herrenTeams: Mannschaft[] = [
 			{ name: "Robin Schüler", position: "", image: "/images/players/2-mannschaft/robin.jpg" },
 			{ name: "Shumail Sayyed", position: "", image: "/images/players/2-mannschaft/shumail.jpg" },
 			{ name: "Tobias Weithaler", position: "", image: "/images/players/2-mannschaft/tobias.jpg" },
-			{ name: "Tom Dunsch", position: "", image: "/images/players/2-mannschaft/tom.jpg" },
 		],
 	},
 ];

@@ -15,6 +15,21 @@ const values = [
 	{ title: "Respekt", text: "Fairness, Rücksicht und ein gutes Miteinander sind Pflicht.", image: "/images/respekt.jpg" },
 	{ title: "Freude", text: "Fußball soll Spaß machen – bei jedem Training und Spiel.", image: "/images/freude.jpg" },
 ];
+
+const orgaTeam = [
+	{ name: "Johannes Schmidt", role: "Jugendleiter" },
+	{ name: "Adi Schoger", role: "Stellv. Jugendleiter" },
+	{ name: "Laura Schröder", role: "Sponsoring und Förderung" },
+	{ name: "Simon Galinski", role: "Event-Organisation" },
+	{ name: "Norman Bauer", role: "Ausstattung und Beschaffung" },
+	{ name: "Jens Tichai", role: "Gebäudemanagement und Plätze" },
+	{ name: "Klaus Führer", role: "Ausstattung und Events" },
+	{ name: "Robert Schäfer", role: "Ausstattung und Events" },
+	{ name: "Michael Hahn", role: "Ausstattung und Events" },
+	{ name: "Heiko Müller", role: "Schiedsrichter, Beschaffung & Öffentlichkeitsarbeit" },
+];
+
+const orgaPortrait = "/images/tsg-logo.png";
 ---
 
 <BaseLayout
@@ -100,7 +115,7 @@ const values = [
     <div class="relative mx-auto max-w-6xl px-4 py-12 md:py-16">
       <h2 class="text-2xl font-bold text-slate-900 md:text-3xl">Unsere Jugendteams.</h2>
       <p class="mt-3 text-sm text-[color:var(--tsg-accent)] md:text-base">
-        Von den Bambini bis zur D-Jugend – bei uns finden Kinder und Jugendliche ihre passende Mannschaft.
+        Von den Bambini bis zur C-Jugend – bei uns finden Kinder und Jugendliche ihre passende Mannschaft.
       </p>
 
       <div class="mt-8 grid gap-4 md:grid-cols-3">
@@ -127,6 +142,35 @@ const values = [
               </ul>
             </div>
           </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ORGA-TEAM -->
+  <section class="bg-gradient-to-b from-[color:var(--tsg-surface)] via-[color:var(--tsg-surface)] to-[color:var(--tsg-surface-muted)]">
+    <div class="mx-auto max-w-6xl px-4 py-12 md:py-16">
+      <h2 class="text-2xl font-bold text-slate-900 md:text-3xl">Das Orga-Team der Jugend</h2>
+      <p class="mt-2 max-w-2xl text-sm text-slate-600 md:text-base">
+        Hinter dem Jugendfußball der TSG Messel steht ein engagiertes Team, das Organisation, Ausstattung und Abläufe
+        zuverlässig im Hintergrund steuert.
+      </p>
+
+      <div class="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+        {orgaTeam.map((person) => (
+          <div class="group text-center">
+            <div class="aspect-square overflow-hidden rounded-2xl bg-white shadow-[0_12px_24px_rgba(30,64,175,0.08)] transition-transform duration-200 group-hover:-translate-y-1">
+              <img
+                src={orgaPortrait}
+                alt={person.name}
+                class="h-full w-full object-contain p-6"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <p class="mt-3 text-sm font-semibold text-slate-900">{person.name}</p>
+            <p class="text-xs text-slate-600">{person.role}</p>
+          </div>
         ))}
       </div>
     </div>
@@ -227,7 +271,7 @@ const values = [
           <h3 class="text-lg font-semibold text-slate-900">Regionalbudget macht Nachwuchsprojekte möglich</h3>
           <p class="text-sm text-slate-800">
             Durch Fördermittel des Landes Hessen im Rahmen des Regionalbudgets und in enger Kooperation mit der Gemeinde
-            Messel konnten wir wichtige Anschaffungen realisieren: eine JBL Musikbox mit Funkmikrofon und acht hochwertige
+            Messel konnten wir wichtige Anschaffungen realisieren: eine JBL Musikbox mit Funkmikrofon und 16 hochwertige
             Mini-Tore für Spielfeste.
           </p>
           <p class="text-sm text-slate-800">

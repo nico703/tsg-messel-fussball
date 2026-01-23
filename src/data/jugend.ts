@@ -122,7 +122,7 @@ export const jugendTeams: JugendTeam[] = [
 	{
 		name: "E2-Jugend",
 		jahrgaenge: "Jahrgang 2016",
-		trainer: "Semih, Michael",
+		trainer: "Iven, Tom",
 		kontaktMail: "jugend@tsg-messel.de",
 		slots: [
 			{
