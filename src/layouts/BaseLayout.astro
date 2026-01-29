@@ -91,29 +91,8 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
 						>
 							Online-Shop
 						</a>
-						<button class="site-nav__toggle" type="button" aria-label="Menü öffnen" aria-expanded="false">
-							<span class="sr-only">Menü öffnen</span>
-							<span></span>
-							<span></span>
-							<span></span>
-						</button>
 					</nav>
 				</div>
-				<div class="mobile-nav" aria-hidden="true">
-					<ul>
-						{navItems.map((item) => (
-							<li>
-								<a href={item.href}>{item.label}</a>
-							</li>
-						))}
-						<li>
-							<a href="https://team.jako.com/de-de/team/tsg_messel/?page=1&sort_by=" target="_blank" rel="noopener noreferrer">
-								Online-Shop
-							</a>
-						</li>
-					</ul>
-				</div>
-				<div class="mobile-nav__backdrop" aria-hidden="true"></div>
 			</header>
 
 			<main id="main-content" class="site-main">
@@ -174,26 +153,12 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
 			</footer>
 		</div>
 		<script>
-			const toggle = document.querySelector(".site-nav__toggle");
-			const backdrop = document.querySelector(".mobile-nav__backdrop");
 			const body = document.body;
-
-			const closeMenu = () => {
-				body.classList.remove("menu-open");
-				if (toggle) toggle.setAttribute("aria-expanded", "false");
+			const onScroll = () => {
+				body.classList.toggle("is-scrolled", window.scrollY > 12);
 			};
-
-			toggle?.addEventListener("click", () => {
-				const isOpen = body.classList.toggle("menu-open");
-				toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
-			});
-
-			backdrop?.addEventListener("click", closeMenu);
-
-			// Schließt das Menü nach Klick auf einen Mobile-Link
-			document.querySelectorAll(".mobile-nav a").forEach((link) => {
-				link.addEventListener("click", closeMenu);
-			});
+			onScroll();
+			window.addEventListener("scroll", onScroll, { passive: true });
 		</script>
 	</body>
 </html>
@@ -203,17 +168,24 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
 	font-family: "Outfit", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 	color: var(--tsg-dark);
 	background-color: var(--tsg-surface);
-	--tsg-primary: #1e3a8a;
-	--tsg-accent: #93b0ff;
+	--tsg-bg: #0b1220;
+	--tsg-bg-soft: #0f172a;
+	--tsg-text: #e5e7eb;
+	--tsg-text-muted: #94a3b8;
+	--tsg-primary: #2563eb;
+	--tsg-primary-hover: #1d4ed8;
+	--tsg-accent: #60a5fa;
 	--tsg-surface: #ffffff;
 	--tsg-surface-muted: #e9f2ff;
-	--tsg-border: #d6e2ff;
+	--tsg-border: rgba(148, 163, 184, 0.18);
 	--tsg-dark: #0f172a;
+	--tsg-glow: rgba(37, 99, 235, 0.35);
+	--tsg-card: rgba(255, 255, 255, 0.06);
 	--surface: rgba(255, 255, 255, 0.98);
 	--surface-strong: #ffffff;
 	--accent: var(--tsg-primary);
 	--accent-2: var(--tsg-accent);
-	--accent-soft: linear-gradient(135deg, rgba(30, 58, 138, 0.18), rgba(14, 165, 233, 0.14));
+	--accent-soft: linear-gradient(135deg, rgba(37, 99, 235, 0.18), rgba(96, 165, 250, 0.14));
 	--bg-gradient: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(233, 242, 255, 0.65) 40%, rgba(233, 242, 255, 0.85) 100%);
 }
 
@@ -268,19 +240,21 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
 	position: sticky;
 	top: 0;
 	backdrop-filter: blur(16px);
-	background: rgba(255, 255, 255, 0.92);
-	border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+	background: rgba(255, 255, 255, 0.82);
+	border-bottom: 1px solid rgba(15, 23, 42, 0.04);
 	z-index: 10;
+	transition: background 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .site-header__inner {
 	max-width: 1200px;
 	margin: 0 auto;
-	padding: 1rem 1.5rem;
+	padding: 0.85rem 1.5rem;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	gap: 1rem;
+	transition: padding 0.2s ease;
 }
 
 .brand {
@@ -358,38 +332,17 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
 }
 
 .site-nav a.active {
-	background: rgba(30, 58, 138, 0.14);
+	background: rgba(37, 99, 235, 0.14);
 	color: var(--tsg-primary);
 }
 
 .site-nav a:hover {
-	background: rgba(30, 58, 138, 0.12);
+	background: rgba(37, 99, 235, 0.12);
 	color: var(--tsg-primary);
 }
 
 .site-nav a:focus-visible {
-	box-shadow: 0 0 0 2px rgba(30, 58, 138, 0.3);
-}
-
-.site-nav__toggle {
-	display: none;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	gap: 4px;
-	width: 42px;
-	height: 42px;
-	border-radius: 999px;
-	border: 1px solid rgba(15, 23, 42, 0.08);
-	background: rgba(255, 255, 255, 0.9);
-	cursor: pointer;
-}
-
-.site-nav__toggle span {
-	display: block;
-	width: 20px;
-	height: 2px;
-	background: #0f172a;
+	box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.3);
 }
 
 .site-nav__cta {
@@ -397,8 +350,8 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
 	font-weight: 600;
 	padding: 0.45rem 1.2rem;
 	border-radius: 999px;
-	border: 1px solid rgba(29, 78, 216, 0.35);
-	background: linear-gradient(135deg, rgba(37, 99, 235, 0.9), rgba(14, 165, 233, 0.85));
+	border: 1px solid rgba(37, 99, 235, 0.35);
+	background: linear-gradient(135deg, rgba(37, 99, 235, 0.9), rgba(96, 165, 250, 0.85));
 	color: #fff;
 	transition: opacity 0.2s ease;
 }
@@ -414,7 +367,7 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
 	border-radius: 999px;
 	border: 1px solid rgba(37, 99, 235, 0.25);
 	color: var(--tsg-primary);
-	background: linear-gradient(135deg, rgba(226, 239, 255, 0.9), rgba(219, 244, 255, 0.9));
+	background: linear-gradient(135deg, rgba(230, 240, 255, 0.95), rgba(214, 231, 255, 0.9));
 	display: inline-flex;
 }
 
@@ -433,26 +386,20 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
 	background: rgba(227, 241, 255, 0.7);
 }
 
-/* Mobile Nav */
-.mobile-nav,
-.mobile-nav__backdrop {
-	display: none;
-}
-
 .mobile-nav-bar {
 	display: none;
 	position: sticky;
-	top: 68px;
+	top: 64px;
 	z-index: 9;
-	background: rgba(255, 255, 255, 0.94);
+	background: transparent;
 	backdrop-filter: blur(12px);
-	border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+	border-bottom: 1px solid rgba(37, 99, 235, 0.14);
 }
 
 .mobile-nav-bar__scroller {
 	display: flex;
 	gap: 0.6rem;
-	padding: 0.75rem 1rem;
+	padding: 0.6rem 1.5rem;
 	overflow-x: auto;
 	scrollbar-width: none;
 }
@@ -465,34 +412,58 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	padding: 0.45rem 1rem;
+	padding: 0.4rem 1rem;
 	border-radius: 999px;
-	border: 1px solid rgba(30, 58, 138, 0.18);
-	background: rgba(233, 242, 255, 0.9);
-	color: #0f172a;
+	border: 1px solid rgba(37, 99, 235, 0.2);
+	background: rgba(37, 99, 235, 0.08);
+	color: var(--tsg-primary);
 	font-weight: 600;
-	font-size: 0.95rem;
+	font-size: 0.9rem;
 	text-decoration: none;
 	white-space: nowrap;
-	transition: background 0.2s ease, color 0.2s ease, border 0.2s ease;
+	box-shadow: 0 6px 14px rgba(15, 23, 42, 0.06);
+	transition: background 0.2s ease, color 0.2s ease, border 0.2s ease, box-shadow 0.2s ease,
+		transform 0.2s ease;
 }
 
 .mobile-nav-bar a.active {
-	background: #1e3a8a;
+	background: var(--tsg-primary);
 	color: #fff;
-	border-color: rgba(30, 58, 138, 0.5);
+	border-color: rgba(37, 99, 235, 0.55);
+	box-shadow: 0 10px 24px rgba(37, 99, 235, 0.3);
 }
 
 .mobile-nav-bar a:hover {
-	border-color: rgba(30, 58, 138, 0.4);
+	border-color: rgba(37, 99, 235, 0.35);
+	box-shadow: 0 10px 22px rgba(37, 99, 235, 0.18);
+	transform: translateY(-1px);
+}
+
+.is-scrolled .site-header {
+	background: rgba(255, 255, 255, 0.9);
+	border-bottom-color: rgba(15, 23, 42, 0.08);
+	box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+}
+
+.is-scrolled .site-header__inner {
+	padding: 0.6rem 1.5rem;
+}
+
+.is-scrolled .mobile-nav-bar {
+	border-bottom-color: rgba(15, 23, 42, 0.04);
+}
+
+.is-scrolled .mobile-nav-bar__scroller {
+	padding: 0.45rem 1.5rem;
 }
 
 @media (max-width: 900px) {
 	.site-header__inner {
 		flex-wrap: wrap;
+		padding: 0.7rem 1rem;
 	}
 	.site-nav {
-		width: 100%;
+		width: auto;
 	}
 	.site-nav ul {
 		flex-wrap: wrap;
@@ -503,12 +474,6 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
 	}
 	.mobile-nav-bar {
 		display: block;
-	}
-}
-
-@media (max-width: 640px) {
-	.mobile-nav {
-		inset: 0;
 	}
 }
 .site-footer__logos {
