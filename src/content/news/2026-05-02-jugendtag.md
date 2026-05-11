@@ -2,7 +2,7 @@
 title: "TSG Messel lädt zum Jugendtag 2026 ein"
 date: "2026-05-02"
 category: "Jugend"
-image: "/images/jugendtag-2026.jpg"
+image: "/images/jugendtag-2026.png"
 teaser: "Die TSG Messel veranstaltet am 13. Juni 2026 ihren großen Jugendtag auf dem Sportgelände in Messel. Von 9:00 bis 18:00 Uhr dreht sich alles um Fußball, Gemeinschaft und Spaß für die ganze Familie."
 ---
 Den Besucherinnen und Besuchern erwartet ein abwechslungsreiches Programm mit zahlreichen Turnieren und Testspielen aller Jugendmannschaften. Zusätzlich bietet die TSG ein Schnuppertraining für die Jahrgänge 2021 und 2022 an – eine ideale Gelegenheit für die Kleinsten, erste Erfahrungen mit dem Fußball zu sammeln.
