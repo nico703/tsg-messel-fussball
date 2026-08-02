@@ -45,11 +45,11 @@ if (limit && limit > 0) {
   <div class="grid gap-6 md:grid-cols-3">
     {items.map((item) => (
       <article class="flex flex-col overflow-hidden rounded-2xl border border-[color:var(--tsg-border)] bg-[color:var(--tsg-surface)] shadow-[0_16px_30px_rgba(30,64,175,0.08)]">
-        <div class="h-40 w-full overflow-hidden">
+        <div class="w-full overflow-hidden bg-[color:var(--tsg-surface-muted)]">
           <img
             src={item.image}
             alt={item.title}
-            class="h-full w-full object-cover"
+            class="max-h-72 w-full object-contain"
             loading="lazy"
             decoding="async"
             width="600"

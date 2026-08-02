@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import NewsList from "../components/NewsList.astro";
+import { existsSync } from "node:fs";
 
 const valueSlides = [
   {
@@ -19,6 +20,10 @@ const valueSlides = [
     image: "/images/freude.jpg",
   },
 ];
+
+const nettoDonationUrl = "https://www.netto-online.de/vereinsspende/TSG-1877-Messel-e.V..vhtm";
+const nettoDonationImage = "/images/netto-vereinsspende.jpg";
+const hasNettoDonationImage = existsSync(new URL("../../public/images/netto-vereinsspende.jpg", import.meta.url));
 ---
 
 <BaseLayout title="TSG Messel – Fußball">
@@ -57,6 +62,66 @@ const valueSlides = [
           class="inline-flex items-center justify-center rounded-full bg-[#1e3a8a] px-6 py-2.5 text-sm font-semibold text-white shadow-md shadow-[#1e3a8a]/30 transition hover:-translate-y-[1px] hover:bg-[#254da8]"
         >
           Zu den Aktiven
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- NETTO VEREINSSPENDE -->
+  <section class="border-y border-[color:var(--tsg-border)] bg-gradient-to-b from-[color:var(--tsg-surface)] via-[color:var(--tsg-surface)] to-[color:var(--tsg-surface-muted)] py-10">
+    <div class="mx-auto grid max-w-6xl gap-6 px-4 md:grid-cols-[0.8fr,1.2fr] md:items-center">
+      {hasNettoDonationImage ? (
+        <a
+          href={nettoDonationUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group relative block overflow-hidden rounded-2xl border border-[color:var(--tsg-border)] bg-white shadow-[0_16px_30px_rgba(30,64,175,0.08)]"
+        >
+          <img
+            src={nettoDonationImage}
+            alt="Netto Vereinsspende für die TSG Messel Jugend"
+            class="aspect-[4/3] w-full object-cover transition duration-300 group-hover:scale-[1.02]"
+            loading="lazy"
+            decoding="async"
+            width="900"
+            height="675"
+          />
+        </a>
+      ) : (
+        <a
+          href={nettoDonationUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex min-h-64 items-center justify-center rounded-2xl border border-[color:var(--tsg-border)] bg-[#ffd900] p-8 text-center shadow-[0_16px_30px_rgba(30,64,175,0.08)]"
+        >
+          <span class="max-w-xs text-3xl font-extrabold uppercase leading-tight text-red-600">
+            Jetzt für uns Pfand spenden
+          </span>
+        </a>
+      )}
+
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-[0.25em] text-[color:var(--tsg-accent)]">
+          Jugend unterstützen
+        </p>
+        <h2 class="mt-3 text-2xl font-bold text-slate-900 md:text-3xl">
+          Danke für eure Unterstützung – wir sind dabei!
+        </h2>
+        <p class="mt-4 text-sm text-slate-700 md:text-base">
+          Ab dem 03.08. könnt ihr die Jugendabteilung der TSG Messel ganz einfach unterstützen:
+          durch Aufrunden an der Kasse oder mit eurem Pfandbon in den Filialen in Messel,
+          Urberach, Ober-Roden und Dreieich.
+        </p>
+        <p class="mt-3 text-sm font-semibold text-[color:var(--tsg-primary)] md:text-base">
+          Jede Spende hilft unserer Jugend weiter – vielen Dank euch allen!
+        </p>
+        <a
+          href={nettoDonationUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mt-6 inline-flex items-center justify-center rounded-full bg-[#1e3a8a] px-6 py-2.5 text-sm font-semibold text-white shadow-md shadow-[#1e3a8a]/30 transition hover:-translate-y-[1px] hover:bg-[#254da8]"
+        >
+          Zur Netto-Vereinsspende
         </a>
       </div>
     </div>

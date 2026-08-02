@@ -30,11 +30,11 @@ const description = data.teaser ?? "Aktuelle Meldung der Fußballabteilung der T
       </p>
       <h1 class="text-3xl font-bold text-slate-900 md:text-4xl">{data.title}</h1>
       {data.image && (
-        <div class="mt-6 overflow-hidden rounded-2xl border border-[color:var(--tsg-border)]">
+        <div class="mt-6 overflow-hidden rounded-2xl border border-[color:var(--tsg-border)] bg-[color:var(--tsg-surface-muted)]">
           <img
             src={data.image}
             alt={data.title}
-            class="h-72 w-full object-cover md:h-96"
+            class="max-h-[70vh] w-full object-contain"
             loading="lazy"
             decoding="async"
           />
