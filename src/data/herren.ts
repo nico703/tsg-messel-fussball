@@ -74,11 +74,13 @@ export const herrenTeams: Mannschaft[] = [
 		fussballDeUrl: "https://www.fussball.de/...", // Link einsetzen
 		spieler: [
 			{ name: "Alexander Schied", position: "", image: "/images/players/2-mannschaft/alex.jpg" },
+			{ name: "Saptarshi Bhattacharjee", position: "", image: "/images/players/2-mannschaft/saptarshi.jpg" },
 			{ name: "Nicolas da Silva", position: "", image: "/images/players/2-mannschaft/nicolas.jpg" },
 			{ name: "Luca Daden", position: "", image: "/images/players/2-mannschaft/luca.jpg" },
 			{ name: "Lukas Depner", position: "", image: "/images/players/2-mannschaft/lukas.jpg" },
 			{ name: "Noam Domta Noumsi", position: "", image: "/images/players/2-mannschaft/noam.jpg" },
 			{ name: "Philipp Gerbig", position: "", image: "/images/players/2-mannschaft/philippg.jpg" },
+			{ name: "Maximilian Grosam", position: "", image: "/images/players/2-mannschaft/maxi.jpg" },
 			{ name: "Justin Gutjahr", position: "", image: "/images/players/2-mannschaft/justing.jpg" },
 			{ name: "Justin Jost", position: "", image: "/images/players/2-mannschaft/justinj.jpg" },
 			{ name: "Kevin Jung", position: "", image: "/images/players/2-mannschaft/kevin.jpg" },
