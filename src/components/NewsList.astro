@@ -12,7 +12,8 @@ let items: Array<{
   title: string;
   date: string;
   category: string;
-  image: string;
+  image?: string;
+  video?: string;
   teaser: string;
   slug?: string;
 }> = [];
@@ -25,6 +26,7 @@ try {
       date: entry.data.date,
       category: entry.data.category,
       image: entry.data.image,
+      video: entry.data.video,
       teaser: entry.data.teaser,
       slug: entry.slug,
     }))
@@ -45,17 +47,30 @@ if (limit && limit > 0) {
   <div class="grid gap-6 md:grid-cols-3">
     {items.map((item) => (
       <article class="flex flex-col overflow-hidden rounded-2xl border border-[color:var(--tsg-border)] bg-[color:var(--tsg-surface)] shadow-[0_16px_30px_rgba(30,64,175,0.08)]">
-        <div class="w-full overflow-hidden bg-[color:var(--tsg-surface-muted)]">
-          <img
-            src={item.image}
-            alt={item.title}
-            class="max-h-72 w-full object-contain"
-            loading="lazy"
-            decoding="async"
-            width="600"
-            height="300"
-          />
-        </div>
+        {(item.image || item.video) && (
+          <div class="w-full overflow-hidden bg-[color:var(--tsg-surface-muted)]">
+            {item.image ? (
+              <img
+                src={item.image}
+                alt={item.title}
+                class="max-h-72 w-full object-contain"
+                loading="lazy"
+                decoding="async"
+                width="600"
+                height="300"
+              />
+            ) : (
+              <video
+                src={item.video}
+                class="max-h-72 w-full object-contain"
+                muted
+                playsinline
+                preload="metadata"
+                aria-label={item.title}
+              ></video>
+            )}
+          </div>
+        )}
         <div class="flex flex-1 flex-col p-4 text-sm">
           <div class="flex items-center justify-between text-[0.7rem] text-slate-500">
             <span class="rounded-full bg-[color:var(--tsg-surface-muted)] px-2 py-0.5 font-semibold uppercase tracking-[0.16em] text-[color:var(--tsg-primary)]">

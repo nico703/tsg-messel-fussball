@@ -29,7 +29,20 @@ const description = data.teaser ?? "Aktuelle Meldung der Fußballabteilung der T
         {data.category} · {data.date}
       </p>
       <h1 class="text-3xl font-bold text-slate-900 md:text-4xl">{data.title}</h1>
-      {data.image && (
+      {data.video ? (
+        <div class="mt-6 overflow-hidden rounded-2xl border border-[color:var(--tsg-border)] bg-[color:var(--tsg-surface-muted)]">
+          <video
+            src={data.video}
+            poster={data.image}
+            controls
+            playsinline
+            preload="metadata"
+            class="max-h-[70vh] w-full object-contain"
+          >
+            Dein Browser kann dieses Video nicht abspielen.
+          </video>
+        </div>
+      ) : data.image && (
         <div class="mt-6 overflow-hidden rounded-2xl border border-[color:var(--tsg-border)] bg-[color:var(--tsg-surface-muted)]">
           <img
             src={data.image}
